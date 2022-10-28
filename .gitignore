@@ -1,6 +1,3 @@
 /backend/node_modules
-/backend/.env
 /backend/.babelrc
 .DS_Store
-/backend/.DS_Store
-/frontend/.DS_Store
