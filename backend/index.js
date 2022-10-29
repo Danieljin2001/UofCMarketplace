@@ -1,5 +1,6 @@
 import "dotenv/config";
 import morgan from "morgan";
+import cors from "cors";
 const express = require("express");
 import { adminRouter } from "./routes/admin";
 
@@ -9,6 +10,13 @@ const server = async () => {
   const app = express();
   // logs http requests in the console
   app.use(morgan("dev"));
+  // enable cors, origin should url of the frontend
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
   // test route @ http://localhost:3001
   app.get("", (req, res) => {
     res.send("Hello Wrld");
