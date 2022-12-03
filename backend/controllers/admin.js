@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import Admin from "../models/admin";
+import jwt from "jsonwebtoken";
 export const adminSignup = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -10,9 +11,9 @@ export const adminSignup = async (req, res) => {
       password: hashed,
     });
     const result = await newAdmin.save();
-    res.status(200).json(result);
+    res.status(200).json({ success: true });
   } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -22,12 +23,16 @@ export const adminLogin = async (req, res) => {
     const user = await Admin.findOne({ username: username });
     if (!user) return res.status(400).json({ msg: "Admin does not exist. " });
 
-    const comparePW = await argon2.verify(password, user.password);
+    const comparePW = await argon2.verify(user.password, password);
     if (!comparePW)
       return res.status(400).json({ msg: "Invalid credentials. " });
-
-    res.status(200).json(user);
+    const token = jwt.sign(
+      { id: user._id, isAdmin: true },
+      process.env.JWT_SECRET
+    );
+    console.log("TOKEN= ", jwt_decode(token));
+    res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json({ error: error.message });
   }
 };
