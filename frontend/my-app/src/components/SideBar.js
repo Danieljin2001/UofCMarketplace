@@ -2,7 +2,11 @@ import React from 'react'
 
 const SideBar = () => {
   return (
-    <div style ={{border:'2px solid white', flex:'1', backgroundColor:"black"}}>SideBar</div>
+    <div style ={{borderRight:'1px solid black', flex:'1', backgroundColor:"white"}}>
+        <div className='container text-center'style ={{backgroundColor:"white", height:"100%", overflow:"auto", color:"black"}}>
+            People that you've messaged before
+        </div>
+    </div>
   )
 }
 
