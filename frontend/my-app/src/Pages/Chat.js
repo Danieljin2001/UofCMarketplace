@@ -10,7 +10,7 @@ const Chat = () => {
       <div className='container'>
         <div className='chat'>
           <SideBar/>
-          <ChatBox/>
+          <ChatBox />
         </div>
       </div>
     </>

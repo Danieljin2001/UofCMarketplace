@@ -5,15 +5,13 @@ import ChatInput from './ChatInput'
 const ChatBox = () => {
   return (
     <div style ={{border:'1px solid white', flex:'2'}}>
-        <div className='container'style ={{backgroundColor:"white", height:"93%"}}>
-            <div class="row" style ={{height:"5vh"}}>
-                <div class="col" style ={{backgroundColor:"red"}}></div>
+ 
+        <div class="col" style ={{textAlign:"center", height:"10%" ,backgroundColor:"white"}}>
+            <div id="name" class="py-3" style = {{backgroundColor:"white", borderBottom:"1px solid black"}}>
+                Sunny
             </div>
-                    <Message></Message>
-                    <Message></Message>
-                    <Message></Message>
-                    <Message></Message>
-                    <Message></Message>
+        </div>
+        <div className='container'style ={{backgroundColor:"white", height:"83%", overflow:"auto"}}>
                     <Message></Message>
         </div>
             <ChatInput/>
