@@ -14,7 +14,6 @@ import './NavBar.css';
 function NavBar(){
     return(
     <>
-     {/* <Navbar style={{backgroundColor: "#FF2F1C"}} expand="lg"> */}
      <Navbar  expand="lg">
       <Container>
         <Navbar.Brand> 
