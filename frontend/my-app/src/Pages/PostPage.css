@@ -1,0 +1,19 @@
+.priceinput{
+    width: 150px;
+    margin-left: 5px;
+}
+
+.phoneinput{
+    width: 250px;
+}
+
+#product-type{
+    width:250px;
+}
+
+
+@media only screen and (min-width:800px) {
+    .title-group {
+        width: 40% !important
+    }
+}
