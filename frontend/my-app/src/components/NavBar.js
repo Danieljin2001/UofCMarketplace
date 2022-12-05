@@ -30,6 +30,7 @@ function NavBar(){
             <Nav.Link href="/buy">Buy</Nav.Link>
             <Nav.Link href="/account">Account</Nav.Link>
             <Nav.Link href="/chat">Chat</Nav.Link>
+            <Nav.Link href="/post">Post</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
