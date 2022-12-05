@@ -2,7 +2,7 @@ import React from 'react'
 
 function SellPage() {
   return (
-    <div>SellPage</div>
+    <div className='text-center'>SellPage</div>
   )
 }
 

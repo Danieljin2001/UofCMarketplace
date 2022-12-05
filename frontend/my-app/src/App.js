@@ -12,7 +12,6 @@ import BuyPage from './Pages/BuyPage'
 const App = () => {
   return (
     <>
-    
       <NavBar></NavBar>
       <Routes>
         <Route path='/' element={<Home/>}/>
