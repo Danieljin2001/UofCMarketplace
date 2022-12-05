@@ -14,7 +14,7 @@ import './NavBar.css';
 function NavBar(){
     return(
     <>
-     <Navbar expand="lg">
+     <Navbar expand="lg" variant="dark">
       <Container>
         <Navbar.Brand> 
           <a className="navbar-brand" href="/">
