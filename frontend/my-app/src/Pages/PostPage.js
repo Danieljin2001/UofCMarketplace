@@ -62,7 +62,7 @@ function PostPage() {
                 <input type="tel" className="form-control phoneinput" id="phone-number" min="0"/>
             </div>
         </div>
-        <div className='text-center'>
+        <div className='text-center mb-3'>
             <Button variant="warning">Post Your Ad</Button>
         </div>
         </>
