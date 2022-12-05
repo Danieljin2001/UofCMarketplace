@@ -1,0 +1,4 @@
+a[href*="/"] {
+    color: white;
+    font-size: large;
+  }
