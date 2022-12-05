@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SellPage from './Pages/SellPage'
 import BuyPage from './Pages/BuyPage'
+import PostPage from './Pages/PostPage'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/buy' element={<BuyPage/>}/>
         <Route path='/sell' element={<SellPage/>}/>
+        <Route path='/post' element={<PostPage/>}/>
         <Route />
       </Routes>
     </>
