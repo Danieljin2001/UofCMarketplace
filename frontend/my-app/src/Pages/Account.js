@@ -2,7 +2,9 @@ import React from 'react'
 
 const Account = () => {
   return (
-    <div className='text-center'>Account</div>
+    <div className='container text-center' style={{border:"2px solid white", height:"80vh"}}>
+      Account
+    </div>
   )
 }
 

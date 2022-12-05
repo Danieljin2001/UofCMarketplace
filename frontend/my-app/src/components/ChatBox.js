@@ -7,7 +7,7 @@ const ChatBox = () => {
     <div style ={{border:'1px solid white', flex:'2'}}>
  
         <div class="col" style ={{textAlign:"center", height:"10%" ,backgroundColor:"white"}}>
-            <div id="name" class="py-3" style = {{backgroundColor:"white", borderBottom:"1px solid black"}}>
+            <div id="name" class="py-3" style = {{color:"black", backgroundColor:"white", borderBottom:"1px solid black"}}>
                 Sunny
             </div>
         </div>

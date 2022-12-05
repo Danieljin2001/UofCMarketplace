@@ -23,6 +23,7 @@ const App = () => {
         <Route path='/buy' element={<BuyPage/>}/>
         <Route path='/sell' element={<SellPage/>}/>
         <Route path='/chat' element={<Chat/>}/>
+        {/* <Route path='/account/update' element={<Chat/>}/> */}
         <Route />
       </Routes>
     </>
