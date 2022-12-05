@@ -1,8 +1,16 @@
 import React from 'react'
+import Buying from '../components/Product'
+import PostProduct from '../components/PostProduct'
 
 function BuyPage() {
   return (
-    <div className='text-center'>BuyPage</div>
+    <div id='background'>
+      <div className='text-center'>BuyPage</div>
+      <PostProduct></PostProduct>
+      <Buying></Buying>
+      <Buying></Buying>
+      <Buying></Buying>
+    </div>
   )
 }
 
