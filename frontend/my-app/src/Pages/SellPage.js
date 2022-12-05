@@ -1,4 +1,6 @@
 import React from 'react'
+import Buying from '../components/Product'
+import PostProduct from '../components/PostProduct'
 
 function SellPage() {
   return (
