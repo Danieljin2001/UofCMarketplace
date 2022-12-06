@@ -12,6 +12,7 @@ import PostPage from './Pages/PostPage'
 import Account from './Pages/Account'
 import Chat from './Pages/Chat'
 import ProductPage from './Pages/ProductPage'
+import UpdatePassword from './Pages/UpdatePassword'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/post' element={<PostPage/>}/>
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/productpage' element={<ProductPage/>}/>
+        <Route path='/updatepass' element={<UpdatePassword/>}/>
         {/* <Route path='/account/update' element={<Chat/>}/> */}
         <Route />
       </Routes>

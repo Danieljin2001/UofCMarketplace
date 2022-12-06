@@ -2,6 +2,8 @@ import Card from 'react-bootstrap/Card';
 
 function Product() {
   return (
+
+    <>
     <Card style={{ width: '80%', margin:'auto', marginTop:'0.5rem', marginBottom:'0.5rem' , backgroundColor:'PaleGoldenRod'}} >
     <a href='/productpage' style={{textDecoration: 'none', color:'black'}}>
     <Card.Body style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between', textAlign:'center', fontFamily:'monospace', backgroundColor:'PaleGoldenRod'}} >
@@ -13,6 +15,8 @@ function Product() {
     </Card.Body>
     </a>
     </Card>
+    </>
+
   );
 }
 
