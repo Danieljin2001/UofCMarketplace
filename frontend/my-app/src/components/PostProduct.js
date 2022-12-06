@@ -1,6 +1,10 @@
 import Button from 'react-bootstrap/Button';
+import React from 'react'
+import {useAuth} from "./AuthProvider";
 
-function PostProduct() {
+const PostProduct = () => {
+  const { token } = useAuth();
+
   return (
     <>
     <div style={{display:'flex', justifyContent:'space-between', flexDirection: 'row-reverse'}}>
