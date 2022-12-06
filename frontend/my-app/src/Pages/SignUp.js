@@ -2,8 +2,8 @@ import React from 'react'
 
 function SignUp() {
   return (
-    <div className='container my-5 py-5 align-items-center' style={{ height:"50vh", width:"30vw", borderRadius:"20px"}}>
-      <form className='container px-5'>
+    <div className='container my-5 py-5 align-items-center' style={{ height:"50vh", width:"450px", borderRadius:"20px"}}>
+      <form className='px-5'>
         <h3 className='text-center'>Sign Up</h3>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>

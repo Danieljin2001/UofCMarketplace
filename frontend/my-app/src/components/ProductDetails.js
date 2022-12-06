@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 function HeaderAndFooterExample() {
   return (
-    <Card className="text-center" style={{width: '50rem', margin: 'auto', backgroundColor:'PaleGoldenRod', marginTop: '5%'}}>
+    <Card className="text-center my-3" style={{width: '60%', margin: 'auto', backgroundColor:'PaleGoldenRod'}}>
       <Card.Header style={{color:'black'}} id='buyorsell'>Buying/Selling</Card.Header>
       <Card.Body style={{backgroundColor:'PaleGoldenRod'}}>
         <Card.Title style={{marginTop:'5%', backgroundColor:'PaleGoldenRod', color:'black'}}>SENG 513 Textbook</Card.Title>
