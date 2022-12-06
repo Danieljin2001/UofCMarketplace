@@ -1,6 +1,19 @@
 import argon2 from "argon2";
 import Student from "../models/student";
 import jwt from "jsonwebtoken";
+const { ObjectId } = require("mongodb");
+
+export const getStudent = async (req, res, id) => {
+  // try {
+  console.log("finding student w id=...", id);
+  const stu = await Student.findById(ObjectId(id));
+  console.log("student= ", stu);
+  if (!stu) return false;
+  return true;
+  // } catch (error) {
+  //   res.status(500).json({ error: error.message });
+  // }
+};
 
 export const studentSignup = async (req, res) => {
   try {

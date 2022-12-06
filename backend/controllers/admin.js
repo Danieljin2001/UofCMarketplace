@@ -1,6 +1,20 @@
 import argon2 from "argon2";
 import Admin from "../models/admin";
 import jwt from "jsonwebtoken";
+const { ObjectId } = require("mongodb");
+
+export const getAdmin = async (id, req, res) => {
+  try {
+    console.log("finding admin w id=...", id);
+    const addy = await Admin.findById(ObjectId(id));
+    console.log("admin= ", addy._id);
+    if (!addy) return false;
+    return true;
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const adminSignup = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -30,7 +44,7 @@ export const adminLogin = async (req, res) => {
       { id: user._id, isAdmin: true },
       process.env.JWT_SECRET
     );
-    console.log("TOKEN= ", jwt_decode(token));
+    // console.log("TOKEN= ", jwt_decode(token));
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });
