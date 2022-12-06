@@ -12,6 +12,7 @@ import PostPage from './Pages/PostPage'
 import Account from './Pages/Account'
 import Chat from './Pages/Chat'
 import ProductPage from './Pages/ProductPage'
+import MyProductsPage from './Pages/MyProducts'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/post' element={<PostPage/>}/>
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/productpage' element={<ProductPage/>}/>
+        <Route path='/myproducts' element={<MyProductsPage/>}/>
         {/* <Route path='/account/update' element={<Chat/>}/> */}
         <Route />
       </Routes>
