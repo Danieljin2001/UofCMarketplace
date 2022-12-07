@@ -8,31 +8,22 @@ import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SellPage from './Pages/SellPage'
 import BuyPage from './Pages/BuyPage'
-import {NavLink} from "react-bootstrap";
-import AuthProvider from "./components/AuthProvider";
-import PostProduct from "./components/PostProduct";
-import PrivateRoute from "./components/PrivateRoute"
+import Logout from "./components/Logout";
+import HomeAuth from "./Pages/HomeAuth";
 
 const App = () => {
 
     return (
     <>
-      <NavBar></NavBar>
-        <AuthProvider>
-          <Routes>
+        <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/home' element={<HomeAuth/>}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/logout' element={<Logout/>}/>
             <Route path='/buy' element={<BuyPage/>}/>
             <Route path='/sell' element={<SellPage/>}/>
-            <Route path='/post/product' element={
-              <PrivateRoute>
-                <PostProduct />
-              </PrivateRoute>
-            }
-            />
-          </Routes>
-        </AuthProvider>
+        </Routes>
     </>
   );
 };

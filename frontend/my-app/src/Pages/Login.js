@@ -5,32 +5,53 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useAuth} from "../components/AuthProvider";
-import {Alert} from "react-bootstrap";
-// import mongoose from "mongoose";
+import jwt_decode from "jwt-decode";
+import {redirect, useNavigate} from "react-router-dom";
+import axios, * as others from 'axios';
+import NavBar from "../components/NavBar";
 
 const Login = () => {
 
-    const { onLogin } = useAuth();
+    const navigate = useNavigate();
 
     function handleSubmit(event)
     {
         event.preventDefault();
-        let email = event.target[0].value;
-        let pass = event.target[1].value;
-        console.log(email, pass);
-        // const query = Student.findOne({ });
-        // const query = Admin.findOne({ });
-        if(email === event.target[0].value && pass === event.target[1].value)
-        {
-            onLogin();
-        }
-        else
-        {
 
+        // post request payload
+        const user = {
+            email: event.target[0].value,
+            password: event.target[1].value
         }
+
+        // temporary: for testing redirects
+        if(user.email === event.target[0].value && user.password === event.target[1].value)
+            navigate("/home"); // redirects to new page with logout link
+
+        // checking email and password then set auth token to local storage
+        axios.post("http://localhost:3000/login", user)
+            .then(response => {
+                if(response.status === 200)
+                {
+                    const encoded = response.data.token;
+                    let decoded = jwt_decode(encoded);
+                    let token = decoded.token;
+                    localStorage.setItem("token", token);
+                    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+                    navigate('/home');
+                }
+                else
+                {
+                    alert("Email or Password is Incorrect!");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
   return (
+      <>
+      <NavBar />
       <Container>
           <Row className="justify-content-center">
               <Col sm={4}>
@@ -44,7 +65,7 @@ const Login = () => {
                           <Form.Control type="password" />
                       </Form.Group>
                       <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                          <Button  variant="warning" type="submit">
+                          <Button className="my-3 px-5" variant="warning" type="submit">
                               Login
                           </Button>
                       </div>
@@ -52,6 +73,7 @@ const Login = () => {
               </Col>
           </Row>
       </Container>
+      </>
   );
 }
 

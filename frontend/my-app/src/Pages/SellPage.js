@@ -1,10 +1,14 @@
 import React from 'react'
 import Buying from '../components/Product'
 import PostProduct from '../components/PostProduct'
+import NavBar from "../components/NavBar";
 
 function SellPage() {
   return (
-    <div className='text-center'>SellPage</div>
+    <>
+      <NavBar />
+      <div className='text-center'>SellPage</div>
+    </>
   )
 }
 

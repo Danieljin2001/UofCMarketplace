@@ -1,9 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import React from 'react'
-import {useAuth} from "./AuthProvider";
 
 const PostProduct = () => {
-  const { token } = useAuth();
 
   return (
     <>
