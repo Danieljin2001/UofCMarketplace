@@ -1,19 +1,36 @@
 import argon2 from "argon2";
 import Student from "../models/student";
 import jwt from "jsonwebtoken";
+import { getAdmin } from "./admin";
 const { ObjectId } = require("mongodb");
 
-// export const getStudent = async (req, res) => {
-//   // try {
-//   console.log("finding student w id=...", req.user.id);
-//   const stu = await Student.findById(ObjectId(req.user.id));
-//   console.log("student= ", stu);
-//   if (!stu) return false;
-//   return true;
-//   // } catch (error) {
-//   //   res.status(500).json({ error: error.message });
-//   // }
-// };
+export const getAllStudents = async (req, res) => {
+  try {
+    const addy = await getAdmin(req, res);
+    if (!addy) return res.status(403).json({ error: "Access Denied" });
+    const allStudents = await Student.find();
+    if (!allStudents) {
+      res.status(200).json({ error: "No students found" });
+    }
+    res.status(200).json({ msg: allStudents });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+export const getStudent = async (req, res) => {
+  try {
+    console.log("finding student w id=...", req.user.id);
+    var stu = await Student.findById(ObjectId(req.user.id));
+    console.log("student= ", stu);
+    if (!stu) {
+      stu = null;
+      return stu;
+    }
+    return stu;
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 export const studentSignup = async (req, res) => {
   try {

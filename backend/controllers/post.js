@@ -1,15 +1,33 @@
 import Post from "../models/post";
 import Student from "../models/student";
+import { getAdmin } from "./admin";
 import { getStudent } from "./student";
 const { ObjectId } = require("mongodb");
 
+export const getAllPosts = async (req, res) => {
+  try {
+    const addy = await getAdmin(req, res);
+    if (!addy) return res.status(403).json({ error: "Access Denied" });
+    const allPosts = await Post.find();
+    if (!allPosts) {
+      res.status(200).json({ error: "No posts found" });
+    }
+    res.status(200).json({ msg: allPosts });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+export const updatePost = async (req, res) => {
+  try {
+    const { postID } = req.body;
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const createNewPost = async (req, res) => {
   try {
-    console.log("userid= ", req.user.id);
-    const stu = await Student.findById(ObjectId(req.user.id));
-    console.log("student= ", stu);
-
-    // const res = await getStudent(req, res);
+    const stu = await getStudent(req, res);
     if (!stu) return res.status(403).json({ error: "Access Denied" });
     const { adType, price, description, productType, contact } = req.body;
     console.log("req user= ", req.user);

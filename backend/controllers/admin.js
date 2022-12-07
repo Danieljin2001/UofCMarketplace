@@ -3,13 +3,16 @@ import Admin from "../models/admin";
 import jwt from "jsonwebtoken";
 const { ObjectId } = require("mongodb");
 
-export const getAdmin = async (id, req, res) => {
+export const getAdmin = async (req, res) => {
   try {
-    console.log("finding admin w id=...", id);
-    const addy = await Admin.findById(ObjectId(id));
-    console.log("admin= ", addy._id);
-    if (!addy) return false;
-    return true;
+    console.log("finding admin w id=...", req.user.id);
+    var addy = await Admin.findById(ObjectId(req.user.id));
+    console.log("admin= ", addy);
+    if (!addy) {
+      addy = null;
+      return addy;
+    }
+    return addy;
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

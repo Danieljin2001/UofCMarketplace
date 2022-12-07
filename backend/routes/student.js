@@ -8,3 +8,4 @@ export const studentRouter = express.Router();
 studentRouter.post("/signup", studentSignup);
 studentRouter.post("/login", studentLogin);
 studentRouter.post("/createpost", verifyToken, createNewPost);
+// studentRouter.post("/updatepost", verifyToken, updatePost);
