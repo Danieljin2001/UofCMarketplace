@@ -13,6 +13,7 @@ const Account = () => {
                 <Button href="/updatepass" variant="light" className='my-2 py-3 ' style={{borderBottom:"1px solid black", width:"20%", color:"black"}}>Update Password</Button>
           </div>
           <div className=' text-center'>
+            {/* logout button */}
                 <Button href="/"className='my-2 py-3' variant="dark" style={{borderBottom:"1px solid black", width:"20%"}}>Logout</Button>
           </div>
         </div>

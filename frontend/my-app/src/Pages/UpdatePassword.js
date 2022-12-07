@@ -10,6 +10,7 @@ const UpdatePassword = () => {
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
+        {/* password input */}
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
       </div>
       <button type="submit" class="container btn btn-primary my-3 px-5">Change</button>
