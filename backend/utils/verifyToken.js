@@ -1,10 +1,18 @@
 import jwt_decode from "jwt-decode";
 import jwt from "jsonwebtoken";
 
-export const verifyToken = async (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   // try {
   // const token = req.header("Authorization");
-  const token = getToken(req);
+  var token = null;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.split(" ")[0] === "Bearer"
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+
+  // const token = getToken(req);
   console.log("token= ", token);
   if (!token) return res.status(403).send("Access Denied");
   // token = req.headers.authorization.split(" ")[1];
@@ -18,7 +26,7 @@ export const verifyToken = async (req, res, next) => {
   console.log("token verified= ", verified);
   req.user = verified;
   // check role
-  // let toke = jwt_decode(token);
+  let toke = jwt_decode(token);
   // if (req.path.includes("admin") && toke && !toke.isAdmin)
   //   return res.status(403).send("Access Denied");
   // if (req.path.includes("student") && toke && toke.isAdmin)
@@ -26,7 +34,7 @@ export const verifyToken = async (req, res, next) => {
 
   next();
   // } catch (error) {
-  //   res.status(500).json({ error: error.message });
+  //   res.status(500).json({ error: "Auth JWT Problem" });
   // }
 };
 
