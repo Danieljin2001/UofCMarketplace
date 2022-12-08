@@ -4,6 +4,9 @@ const PostSchema = new mongoose.Schema({
   ownerID: {
     type: String,
   },
+  title: {
+    type: String,
+  },
   price: {
     type: String,
   },
