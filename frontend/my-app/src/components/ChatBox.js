@@ -7,6 +7,7 @@ const ChatBox = () => {
     <div style ={{flex:'2'}}>
  
         <div class="col" style ={{textAlign:"center", height:"10%" ,backgroundColor:"white"}}>
+              {/* name of person you're messaging */}
             <div id="name" class="py-3" style = {{color:"black", backgroundColor:"white", borderBottom:"1px solid black"}}>
                 Sunny
             </div>

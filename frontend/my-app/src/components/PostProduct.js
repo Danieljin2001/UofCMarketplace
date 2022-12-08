@@ -1,15 +1,17 @@
 import Button from 'react-bootstrap/Button';
 import React from 'react'
 
-const PostProduct = () => {
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import PostPage from '../Pages/PostPage';
+
+const PostProduct = () => {
 
 function PostProduct() {
   const navigate = useNavigate();
   const routeChange = () => {
     navigate("/post")
   };
+}
   
 return (
     <>
