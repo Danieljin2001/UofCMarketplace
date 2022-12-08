@@ -6,8 +6,8 @@ const { ObjectId } = require("mongodb");
 
 export const getAllPosts = async (req, res) => {
   try {
-    const addy = await getAdmin(req, res);
-    if (!addy) return res.json({ error: "Access Denied" });
+    // const addy = await getAdmin(req, res);
+    // if (!addy) return res.json({ error: "Access Denied" });
     const allPosts = await Post.find();
     if (!allPosts) {
       res.json({ error: "No posts found" });
