@@ -38,11 +38,10 @@ export const adminLogin = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await Admin.findOne({ username: username });
-    if (!user) return res.status(400).json({ msg: "Admin does not exist. " });
+    if (!user) return res.json({ error: "Admin does not exist. " });
 
     const comparePW = await argon2.verify(user.password, password);
-    if (!comparePW)
-      return res.status(400).json({ msg: "Invalid credentials. " });
+    if (!comparePW) return res.json({ error: "Invalid credentials. " });
     const token = jwt.sign(
       { id: user._id, isAdmin: true },
       process.env.JWT_SECRET
