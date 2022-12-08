@@ -1,8 +1,14 @@
 import React from 'react'
+import NavBar from "../components/NavBar";
 
 function SignUp() {
   return (
-    <div className='container my-5 py-5 align-items-center' style={{ height:"50vh", width:"450px", borderRadius:"20px"}}>
+
+    <>
+      <NavBar />
+      <div className='text-center'>SignUp</div>
+      
+      <div className='container my-5 py-5 align-items-center' style={{ height:"50vh", width:"450px", borderRadius:"20px"}}>
       <form className='px-5'>
         <h3 className='text-center'>Sign Up</h3>
         <div class="form-group">
@@ -19,6 +25,7 @@ function SignUp() {
         <button type="submit" class="container btn btn-primary my-3 px-5">Submit</button>
       </form>
     </div>
+    </>
   )
 }
 

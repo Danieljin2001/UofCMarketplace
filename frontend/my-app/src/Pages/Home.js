@@ -1,9 +1,11 @@
 import React from 'react'
 import './Home.css';
+import NavBar from "../components/NavBar";
 
 function Home() {
   return (
   <>
+  <NavBar />
   <div className='square-box d-flex justify-content-center align-items-center'>
         <div>
           <h1>University of Calgary Marketplace</h1>

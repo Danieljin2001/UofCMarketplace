@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.button
+{
+  text-align: center;
+}
+
 *{
   color:white;
 }
+

@@ -1,4 +1,7 @@
 import Button from 'react-bootstrap/Button';
+import React from 'react'
+
+const PostProduct = () => {
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import PostPage from '../Pages/PostPage';
 
@@ -7,8 +10,8 @@ function PostProduct() {
   const routeChange = () => {
     navigate("/post")
   };
-
-  return (
+  
+return (
     <>
     <div style={{display:'flex', justifyContent:'space-between', flexDirection: 'row-reverse'}}>
       <Button onClick={routeChange} variant="primary" style={{marginRight:'10%'}}>Post a Product</Button>
@@ -19,7 +22,6 @@ function PostProduct() {
     </>
   );
 }
-
 
 
 export default PostProduct;
