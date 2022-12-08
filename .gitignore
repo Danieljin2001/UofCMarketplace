@@ -1,3 +1,4 @@
+/frontend/my-app/node_modules
 /backend/node_modules
 /backend/.babelrc
 .DS_Store
