@@ -1,5 +1,5 @@
 import React from 'react'
-import Buying from '../components/Product'
+import Product from '../components/Product'
 import PostProduct from '../components/PostProduct'
 import NavBar from "../components/NavBar";
 
@@ -15,6 +15,14 @@ function BuyPage()
           <Buying></Buying>
           <Buying></Buying>
         </div>
+        
+      <div id='background'>
+        <div className='text-center'>BuyPage</div>
+        <PostProduct></PostProduct>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+      </div>
     </>
   )
 }

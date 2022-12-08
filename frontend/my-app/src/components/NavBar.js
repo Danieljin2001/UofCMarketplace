@@ -14,8 +14,7 @@ import './NavBar.css';
 function NavBar(){
     return(
     <>
-     {/* <Navbar style={{backgroundColor: "#FF2F1C"}} expand="lg"> */}
-     <Navbar  expand="lg">
+     <Navbar expand="lg" variant="dark">
       <Container>
         <Navbar.Brand> 
           <a className="navbar-brand" href="/">
@@ -29,6 +28,9 @@ function NavBar(){
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/sell">Sell</Nav.Link>
             <Nav.Link href="/buy">Buy</Nav.Link>
+            <Nav.Link href="/account">Account</Nav.Link>
+            <Nav.Link href="/chat">Chat</Nav.Link>
+            <Nav.Link href="/post">Post</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
