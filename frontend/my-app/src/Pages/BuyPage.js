@@ -7,15 +7,6 @@ function BuyPage()
 {
   return (
     <>
-        <NavBar />
-        <div id='background'>
-          <div className='text-center'>BuyPage</div>
-          <PostProduct></PostProduct>
-          <Buying></Buying>
-          <Buying></Buying>
-          <Buying></Buying>
-        </div>
-        
       <div id='background'>
         <div className='text-center'>BuyPage</div>
         <PostProduct></PostProduct>
