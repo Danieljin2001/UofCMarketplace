@@ -51,7 +51,6 @@ const Login = () => {
     }
   return (
       <>
-      <NavBar />
       <Container style={{marginTop:"11rem"}}>
           <Row className="justify-content-center">
               <Col sm={4}>

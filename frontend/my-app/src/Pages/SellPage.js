@@ -6,7 +6,6 @@ import NavBar from "../components/NavBar";
 function SellPage() {
   return (
     <>
-      <NavBar />
       <div id='background'>
         <div className='text-center'>Sell Page</div>
         <PostProduct></PostProduct>

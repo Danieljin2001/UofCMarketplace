@@ -3,9 +3,7 @@ import NavBar from "../components/NavBar";
 
 function SignUp() {
   return (
-
     <>
-      <NavBar />
       <div className='container my-5 py-5 align-items-center' style={{ height:"50vh", width:"450px", borderRadius:"20px"}}>
       <form className='px-5'>
         <h3 className='text-center'>Sign Up</h3>

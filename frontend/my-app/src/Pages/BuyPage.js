@@ -7,7 +7,6 @@ function BuyPage()
 {
   return (
     <>
-      <NavBar></NavBar>
       <div id='background'>
         <PostProduct></PostProduct>
         <Product></Product>

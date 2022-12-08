@@ -7,7 +7,6 @@ import NavBar from '../components/NavBar'
 const Account = () => {
   return (
       <>
-      <NavBar></NavBar>
         <div className='container align-items-center' style={{marginTop:"10%"}}>
           <div className=' text-center'>
                 <Button href="/myproducts" variant="light" className='my-2 py-3 ' style={{borderBottom:"1px solid black", width:"20%", color:"black"}}>My Posts</Button>

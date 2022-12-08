@@ -7,7 +7,6 @@ import './Chat.css'
 const Chat = () => {
   return (
     <>
-      <NavBar></NavBar>
       <div className='container my-4'>
         <div className='chat'>
           <SideBar/>

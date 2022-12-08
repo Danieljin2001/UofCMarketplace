@@ -13,7 +13,6 @@ function PostPage() {
     }
     return (
         <>
-        <NavBar></NavBar>
         <div className='text-center'>
             <h2 className="text-white">Post Ad</h2>
         </div>
@@ -68,10 +67,6 @@ function PostPage() {
             <Button variant="warning">Post Your Ad</Button>
         </div>
         </>
-        
-        
-        
-
     )
 }
 
