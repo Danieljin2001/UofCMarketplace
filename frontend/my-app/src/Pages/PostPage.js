@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import React from 'react'
 import './PostPage.css';
+import NavBar from '../components/NavBar';
 
 function PostPage() {
     let AdType = "";
@@ -12,6 +13,7 @@ function PostPage() {
     }
     return (
         <>
+        <NavBar></NavBar>
         <div className='text-center'>
             <h2 className="text-white">Post Ad</h2>
         </div>

@@ -6,8 +6,6 @@ function SignUp() {
 
     <>
       <NavBar />
-      <div className='text-center'>SignUp</div>
-      
       <div className='container my-5 py-5 align-items-center' style={{ height:"50vh", width:"450px", borderRadius:"20px"}}>
       <form className='px-5'>
         <h3 className='text-center'>Sign Up</h3>

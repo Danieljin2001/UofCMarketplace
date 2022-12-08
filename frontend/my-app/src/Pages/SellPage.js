@@ -7,8 +7,6 @@ function SellPage() {
   return (
     <>
       <NavBar />
-      <div className='text-center'>SellPage</div>
-      
       <div id='background'>
         <div className='text-center'>Sell Page</div>
         <PostProduct></PostProduct>
