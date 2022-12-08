@@ -10,7 +10,7 @@ export const getAllStudents = async (req, res) => {
     if (!addy) return res.status(403).json({ error: "Access Denied" });
     const allStudents = await Student.find();
     if (!allStudents) {
-      res.status(200).json({ error: "No students found" });
+      res.json({ error: "No students found" });
     }
     res.status(200).json({ msg: allStudents });
   } catch (error) {
@@ -38,7 +38,7 @@ export const studentSignup = async (req, res) => {
     const hashed = await argon2.hash(password);
     const emailCheck = email.substring(email.lastIndexOf("@") + 1);
     if (emailCheck !== "ucalgary.ca")
-      return res.status(400).json({ msg: "Email must be @ucalgary.ca " });
+      return res.json({ error: "Email must be @ucalgary.ca " });
 
     const newStudent = new Student({
       email: email,
@@ -55,11 +55,10 @@ export const studentLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Student.findOne({ email: email });
-    if (!user) return res.status(400).json({ msg: "Student does not exist. " });
+    if (!user) return res.json({ error: "Student does not exist. " });
 
     const comparePW = await argon2.verify(user.password, password);
-    if (!comparePW)
-      return res.status(400).json({ msg: "Invalid credentials. " });
+    if (!comparePW) return res.json({ error: "Invalid credentials. " });
 
     const token = jwt.sign(
       { id: user._id, isAdmin: false },

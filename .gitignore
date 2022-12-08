@@ -1,3 +1,29 @@
+node_modules
+/frontend/my-app/node_modules
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/frontend/my-app/node_modules
+/frontend/my-app/.pnp
+/frontend/my-app/.pnp.js
+
+# testing
+/frontend/my-app/coverage
+
+# production
+/frontend/my-app/build
+
+# misc
+/frontend/my-app/.DS_Store
+/frontend/my-app/.env.local
+/frontend/my-app/.env.development.local
+/frontend/my-app/.env.test.local
+/frontend/my-app/.env.production.local
+
+/frontend/my-app/npm-debug.log*
+/frontend/my-app/yarn-debug.log*
+/frontend/my-app/yarn-error.log*
+
 /backend/node_modules
 /backend/.babelrc
 .DS_Store

@@ -7,10 +7,10 @@ const { ObjectId } = require("mongodb");
 export const getAllPosts = async (req, res) => {
   try {
     const addy = await getAdmin(req, res);
-    if (!addy) return res.status(403).json({ error: "Access Denied" });
+    if (!addy) return res.json({ error: "Access Denied" });
     const allPosts = await Post.find();
     if (!allPosts) {
-      res.status(200).json({ error: "No posts found" });
+      res.json({ error: "No posts found" });
     }
     res.status(200).json({ msg: allPosts });
   } catch (error) {
@@ -28,7 +28,7 @@ export const updatePost = async (req, res) => {
 export const createNewPost = async (req, res) => {
   try {
     const stu = await getStudent(req, res);
-    if (!stu) return res.status(403).json({ error: "Access Denied" });
+    if (!stu) return res.json({ error: "Access Denied" });
     const { adType, price, description, productType, contact } = req.body;
     console.log("req user= ", req.user);
     const newPost = new Post({
@@ -41,7 +41,7 @@ export const createNewPost = async (req, res) => {
     });
     const postResult = await newPost.save();
     if (!postResult) {
-      res.status(400).json({ success: false, msg: "error saving new post" });
+      res.json({ error: "error saving new post" });
     }
     res.status(200).json({ success: true });
   } catch (error) {

@@ -1,43 +1,65 @@
-import React from 'react'
-import NavBar from './components/NavBar'
-import { Route, Routes } from 'react-router-dom'
-import Home from './Pages/Home'
-import SignUp from './Pages/SignUp'
-import Login  from './Pages/Login'
-import { Link } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import SellPage from './Pages/SellPage'
-import BuyPage from './Pages/BuyPage'
-import Logout from "./components/Logout";
-import HomeAuth from "./Pages/HomeAuth";
-import PostPage from './Pages/PostPage'
-import Account from './Pages/Account'
-import Chat from './Pages/Chat'
-import ProductPage from './Pages/ProductPage'
-import MyProductsPage from './Pages/MyProducts'
-import UpdatePassword from './Pages/UpdatePassword'
-import PrivateRoutes from './PrivateRoutes'
+import React from "react";
+import NavBar from "./components/NavBar";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import SignUp from "./Pages/SignUp";
+import Login from "./Pages/Login";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SellPage from "./Pages/SellPage";
+import BuyPage from "./Pages/BuyPage";
+import PostPage from "./Pages/PostPage";
+import Account from "./Pages/Account";
+import Chat from "./Pages/Chat";
+import ProductPage from "./Pages/ProductPage";
+import MyProductsPage from "./Pages/MyProducts";
+import UpdatePassword from "./Pages/UpdatePassword";
+import { AuthenticatedRoute } from "./routeProtection";
+import PublicRoute from "./PublicRoute";
+import ProtectedRoute from "./ProtectedRoute";
+import AdminLogin from "./Pages/AdminLogin";
+import AdminRoute from "./AdminRoute";
 
 const App = () => {
-
-    return (
+  return (
     <>
-      <NavBar></NavBar>
+      {/* <NavBar></NavBar> */}
       <Routes>
-        <Route element={<PrivateRoutes/>}>
-          <Route path='/chat' element={<Chat/>}/>
-          <Route path='/logout' element={<Logout/>}/>
-          <Route path='/account' element={<Account/>}/>
-          <Route path='/post' element={<PostPage/>}/>
+        {/* public routes, wrap it under publicroute component */}
+        {/* <Route path="" element={<PublicRoute />}> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/buy" element={<BuyPage />} />
+        <Route path="/sell" element={<SellPage />} />
+        {/* </Route> */}
+
+        {/* private routes, just checks if logged in */}
+        <Route path="" element={<ProtectedRoute />}>
+          <Route path="/account" element={<Account />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/post" element={<PostPage />} />
+          <Route path="/productpage" element={<ProductPage />} />
+          <Route path="/myproducts" element={<MyProductsPage />} />
         </Route>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/home' element={<HomeAuth/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/buy' element={<BuyPage/>}/>
-        <Route path='/sell' element={<SellPage/>}/>
-        <Route path='/productpage' element={<ProductPage/>}/>
-        <Route path='/myproducts' element={<MyProductsPage/>}/>
+
+        {/* routes only for admin */}
+        <Route path="" element={<AdminRoute />}>
+          <Route path="/students" element={null} />
+          <Route path="/posts" element={null} />
+        </Route>
+
+        {/* <Route path="/" element={<Home />} /> */}
+        {/* <Route path="/home" element={<HomeAuth />} /> */}
+        {/* <Route path="/signup" element={<SignUp />} /> */}
+
+        {/* <Route path="/login" element={<Login />} /> */}
+        {/* <Route path="/logout" element={<Logout />} /> */}
+        {/* <Route path="/buy" element={<BuyPage />} /> */}
+        {/* <Route path="/sell" element={<SellPage />} /> */}
+
         {/* <Route path='/account/update' element={<Chat/>}/> */}
         <Route />
       </Routes>
@@ -45,4 +67,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;
