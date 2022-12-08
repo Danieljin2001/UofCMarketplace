@@ -1,5 +1,8 @@
 import jwt_decode from "jwt-decode";
-
+export const getToken = () => {
+  const token = localStorage.getItem("token");
+  return token;
+};
 export const isAuth = () => {
   const token = localStorage.getItem("token");
   console.log("status== ", token);

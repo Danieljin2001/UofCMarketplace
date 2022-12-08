@@ -7,7 +7,7 @@ export const adminRouter = express.Router();
 
 adminRouter.post("/signup", adminSignup);
 adminRouter.post("/login", adminLogin);
-adminRouter.get("/allposts", verifyToken, getAllPosts);
+adminRouter.get("/allposts", getAllPosts);
 adminRouter.get("/allstudents", verifyToken, getAllStudents);
 
 // adminRouter.use("/logout");

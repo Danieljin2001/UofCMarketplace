@@ -6,8 +6,8 @@ const { ObjectId } = require("mongodb");
 
 export const getAllPosts = async (req, res) => {
   try {
-    const addy = await getAdmin(req, res);
-    if (!addy) return res.json({ error: "Access Denied" });
+    // const addy = await getAdmin(req, res);
+    // if (!addy) return res.json({ error: "Access Denied" });
     const allPosts = await Post.find();
     if (!allPosts) {
       res.json({ error: "No posts found" });
@@ -29,9 +29,11 @@ export const createNewPost = async (req, res) => {
   try {
     const stu = await getStudent(req, res);
     if (!stu) return res.json({ error: "Access Denied" });
-    const { adType, price, description, productType, contact } = req.body;
+    const { adType, price, description, productType, contact, title } =
+      req.body;
     console.log("req user= ", req.user);
     const newPost = new Post({
+      title: title,
       ownerID: stu._id,
       price: price,
       desc: description,
