@@ -4,16 +4,9 @@
 .square-box{
     border: 2px solid white;
     height: 80vh;
-    background-color: white;
     background: #111;
 }
 
-.bg{
-    background:no-repeat center url("https://www.ucalgary.ca/ancillary/sites/default/files/styles/ucws_hero_cta_desktop/public/2019-05/find_parking_hero.jpg?h=6cbe26bd&itok=8WUybUDo");
-    background-size: cover;
-    height: 90vh;
-}
-  
 div h1 {
     font-size: 110px;
     text-transform: uppercase;
