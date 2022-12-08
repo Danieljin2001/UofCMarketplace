@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
-import jwt_decode from "jwt-decode";
-import { redirect, useNavigate, useLocation } from "react-router-dom";
-import axios, * as others from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { studentLogin } from "../api";
+import { addyLogin } from "../api";
 
-const Login = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   let location = useLocation();
@@ -22,10 +20,10 @@ const Login = () => {
 
     // post request payload
     const user = {
-      email: event.target[0].value,
+      username: event.target[0].value,
       password: event.target[1].value,
     };
-    const response = await studentLogin(user);
+    const response = await addyLogin(user);
     console.log("response== ", response);
     if (!response.error) {
       navigate(from, { replace: true });
@@ -33,32 +31,6 @@ const Login = () => {
       setError(response.error);
       console.log("errors= ", response.error);
     }
-
-    // temporary: for testing redirects
-    // if (
-    //   user.email === event.target[0].value &&
-    //   user.password === event.target[1].value
-    // )
-    //   navigate("/home"); // redirects to new page with logout link
-
-    // checking email and password then set auth token to local storage
-    // axios
-    //   .post("http://localhost:3000/login", user)
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       const encoded = response.data.token;
-    //       let decoded = jwt_decode(encoded);
-    //       let token = decoded.token;
-    //       localStorage.setItem("token", token);
-    //       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    //       navigate("/home");
-    //     } else {
-    //       alert("Email or Password is Incorrect!");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
   return (
     <>
@@ -67,8 +39,8 @@ const Login = () => {
         <Row className="justify-content-center">
           <Col sm={4}>
             <Form noValidate onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label className="text-white">UCalgary Email</Form.Label>
+              <Form.Group className="mb-3" controlId="username">
+                <Form.Label className="text-white">Username</Form.Label>
                 <Form.Control type="text" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="pass">
@@ -105,4 +77,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;
