@@ -1,4 +1,7 @@
 import Card from "react-bootstrap/Card";
+import { Route, Routes } from "react-router";
+import { Link } from "react-router-dom";
+import ProductPage from "../Pages/ProductPage";
 
 function Product({ props }) {
   console.log("props= ", props);
@@ -13,10 +16,14 @@ function Product({ props }) {
           backgroundColor: "PaleGoldenRod",
         }}
       >
-        <a
+        {/* <Routes>
+          <Route path="/productpage" element={<ProductPage />} />
+        </Routes> */}
+        <Link to="/productpage" state={{ props }}>
+          {/* <a
           href="/productpage"
           style={{ textDecoration: "none", color: "black" }}
-        >
+        > */}
           <Card.Body
             style={{
               display: "flex",
@@ -64,7 +71,8 @@ function Product({ props }) {
               </Card.Text>
             </div>
           </Card.Body>
-        </a>
+          {/* </a> */}
+        </Link>
       </Card>
     </>
   );

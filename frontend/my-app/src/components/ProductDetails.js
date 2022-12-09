@@ -3,7 +3,8 @@ import Card from "react-bootstrap/Card";
 import { isAuth } from "../routeProtection";
 import NavBar from "./NavBar";
 
-function HeaderAndFooterExample() {
+function HeaderAndFooterExample({ props }) {
+  console.log("props in detail= ", props);
   const auth = isAuth();
   return (
     <>
@@ -17,7 +18,7 @@ function HeaderAndFooterExample() {
         }}
       >
         <Card.Header style={{ color: "black" }} id="buyorsell">
-          Buying/Selling
+          {props.adType?.toUpperCase()}
         </Card.Header>
         <Card.Body style={{ backgroundColor: "PaleGoldenRod" }}>
           <Card.Title
@@ -27,7 +28,7 @@ function HeaderAndFooterExample() {
               color: "black",
             }}
           >
-            SENG 513 Textbook
+            {props.title?.toUpperCase()}
           </Card.Title>
           <Card.Text
             style={{
@@ -37,8 +38,7 @@ function HeaderAndFooterExample() {
               color: "black",
             }}
           >
-            Hello, I am currently selling the SENG 513 for $30. Please message
-            me if you are interested at{" "}
+            {props.desc}{" "}
             {auth ? (
               <>test@ucalgary.ca </>
             ) : (
@@ -60,7 +60,7 @@ function HeaderAndFooterExample() {
             <Button variant="primary">Message</Button>
           </div>
         </Card.Body>
-        <Card.Footer className="text-muted">10/22/2022</Card.Footer>
+        <Card.Footer className="text-muted">{props.createdAt}</Card.Footer>
       </Card>
     </>
   );
