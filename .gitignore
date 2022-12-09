@@ -25,5 +25,4 @@ node_modules
 /frontend/my-app/yarn-error.log*
 
 /backend/node_modules
-/backend/.babelrc
 .DS_Store
