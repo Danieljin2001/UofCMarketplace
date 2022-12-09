@@ -4,6 +4,20 @@ import { getAdmin } from "./admin";
 import { getStudent } from "./student";
 const { ObjectId } = require("mongodb");
 
+export const getMyPosts = async (req, res) => {
+  try {
+    const stu = await getStudent(req, res);
+    if (!stu) return res.json({ error: "Access Denied" });
+    const myPosts = await Post.find({ ownerID: stu._id });
+    if (!myPosts) {
+      res.json({ error: "No posts found by student" });
+    }
+    res.status(200).json({ msg: myPosts });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const getAllPosts = async (req, res) => {
   try {
     // const addy = await getAdmin(req, res);
