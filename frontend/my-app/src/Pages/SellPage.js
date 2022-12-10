@@ -19,7 +19,7 @@ function SellPage() {
     <>
       <NavBar />
       <div id="background">
-        <div className="text-center">Sell Page</div>
+        <div className="text-center">Sell</div>
         <PostProduct></PostProduct>
         {posts?.map((post) => (
           <Product key={post._id} props={post} />

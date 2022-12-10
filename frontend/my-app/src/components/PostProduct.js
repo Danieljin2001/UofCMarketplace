@@ -9,7 +9,7 @@ const PostProduct = () => {
 return (
     <>
     <div style={{display:'flex', justifyContent:'space-between', flexDirection: 'row-reverse'}}>
-      <Button href = "/post" variant="primary" style={{marginRight:'10%'}}>Post a Product</Button>
+      <Button href = "/post" variant="warning" style={{marginRight:'10%', color:'black'}}>Post a Product</Button>
     </div>
     </>
   );
