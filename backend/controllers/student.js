@@ -4,10 +4,25 @@ import jwt from "jsonwebtoken";
 import { getAdmin } from "./admin";
 const { ObjectId } = require("mongodb");
 
+export const deleteAdminStudent = async (req, res) => {
+  try {
+    const { stuID } = req.body;
+    const addy = await getAdmin(req, res);
+    if (!addy) return res.json({ error: "Access Denied" });
+    const myStudent = await Student.findById(ObjectId(stuID));
+    if (!myStudent) return res.json({ error: "No Student Found" });
+
+    await Student.deleteOne(ObjectId(stuID));
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const getAllStudents = async (req, res) => {
   try {
     const addy = await getAdmin(req, res);
-    if (!addy) return res.status(403).json({ error: "Access Denied" });
+    if (!addy) return res.json({ error: "Access Denied" });
     const allStudents = await Student.find();
     if (!allStudents) {
       res.json({ error: "No students found" });

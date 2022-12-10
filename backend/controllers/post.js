@@ -4,6 +4,21 @@ import { getAdmin } from "./admin";
 import { getStudent } from "./student";
 const { ObjectId } = require("mongodb");
 
+export const deleteAdminPost = async (req, res) => {
+  try {
+    const { postID } = req.body;
+    const addy = await getAdmin(req, res);
+    if (!addy) return res.json({ error: "Access Denied" });
+    const myPost = await Post.findById(ObjectId(postID));
+    if (!myPost) return res.json({ error: "No Post Found" });
+
+    await Post.deleteOne(ObjectId(postID));
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const deleteMyPost = async (req, res) => {
   try {
     const { postID } = req.body;
