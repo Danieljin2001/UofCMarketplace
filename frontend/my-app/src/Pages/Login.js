@@ -10,6 +10,7 @@ import { redirect, useNavigate, useLocation } from "react-router-dom";
 import axios, * as others from "axios";
 import NavBar from "../components/NavBar";
 import { studentLogin } from "../api";
+import ErrorAlert from "../components/ErrorAlert";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ const Login = () => {
   return (
     <>
       <NavBar />
+      {error ? <ErrorAlert props={error} /> : null}
       <Container style={{ marginTop: "11rem" }}>
         <Row className="justify-content-center">
           <Col sm={4}>
@@ -96,7 +98,6 @@ const Login = () => {
                   Login
                 </Button>
               </div>
-              {error ? <div>Error: {error}</div> : null}
             </Form>
           </Col>
         </Row>

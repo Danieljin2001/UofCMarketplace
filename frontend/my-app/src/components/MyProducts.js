@@ -1,7 +1,39 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { confirmAlert } from "react-confirm-alert";
+import DeletePost from "./DeletePost";
 
 function MyProducts({ props }) {
+  function confirmDelete() {
+    //call api
+  }
+  const submit = () => {
+    const options = {
+      title: "Title",
+      message: "Message",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => alert("Click Yes"),
+        },
+        {
+          label: "No",
+          onClick: () => alert("Click No"),
+        },
+      ],
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      keyCodeForClose: [8, 32],
+      willUnmount: () => {},
+      afterClose: () => {},
+      onClickOutside: () => {},
+      onKeypress: () => {},
+      onKeypressEscape: () => {},
+    };
+
+    confirmAlert(options);
+  };
+
   return (
     <Card
       style={{
@@ -55,7 +87,7 @@ function MyProducts({ props }) {
           <Button variant="success" style={{ width: "10rem" }}>
             Update
           </Button>
-          <Button variant="danger" style={{ width: "10rem" }}>
+          <Button onClick={submit} variant="danger" style={{ width: "10rem" }}>
             Delete
           </Button>
         </div>
