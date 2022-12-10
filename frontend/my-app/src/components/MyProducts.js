@@ -1,66 +1,81 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import ConfirmDelete from "./ConfirmDelete";
+import ErrorAlert from "../components/ErrorAlert";
+import SuccessAlert from "../components/SuccessAlert";
 
 function MyProducts({ props }) {
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   return (
-    <Card
-      style={{
-        marginTop: "0.5%",
-        marginRight: "8%",
-        marginLeft: "8%",
-        backgroundColor: "PaleGoldenRod",
-      }}
-    >
-      <Card.Body
+    <>
+      {error ? <ErrorAlert props={error} /> : null}
+      {success ? <SuccessAlert props={success} /> : null}
+      <Card
         style={{
-          display: "flex",
-          justifyContent: "space-between",
+          marginTop: "0.5%",
+          marginRight: "8%",
+          marginLeft: "8%",
           backgroundColor: "PaleGoldenRod",
         }}
       >
-        <div
+        <Card.Body
           style={{
             display: "flex",
-            fontSize: "1rem",
-            width: "60%",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             backgroundColor: "PaleGoldenRod",
           }}
         >
-          <Card.Text
-            style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+          <div
+            style={{
+              display: "flex",
+              fontSize: "1rem",
+              width: "60%",
+              justifyContent: "space-around",
+              backgroundColor: "PaleGoldenRod",
+            }}
           >
-            {props._id}
-          </Card.Text>
-          <Card.Text
-            style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+            <Card.Text
+              style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+            >
+              {props._id}
+            </Card.Text>
+            <Card.Text
+              style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+            >
+              {props.productType?.toUpperCase()}
+            </Card.Text>
+            <Card.Text
+              style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+            >
+              {props.title?.toUpperCase()}
+            </Card.Text>
+          </div>
+          <div
+            id="inputGroup"
+            style={{
+              display: "flex",
+              width: "30%",
+              justifyContent: "space-around",
+              backgroundColor: "PaleGoldenRod",
+            }}
           >
-            {props.productType?.toUpperCase()}
-          </Card.Text>
-          <Card.Text
-            style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
-          >
-            {props.title?.toUpperCase()}
-          </Card.Text>
-        </div>
-        <div
-          id="inputGroup"
-          style={{
-            display: "flex",
-            width: "30%",
-            justifyContent: "space-around",
-            backgroundColor: "PaleGoldenRod",
-          }}
-        >
-          <Button variant="success" style={{ width: "10rem" }}>
-            Update
-          </Button>
-          <Button variant="danger" style={{ width: "10rem" }}>
+            <Button variant="success" style={{ width: "10rem" }}>
+              Update
+            </Button>
+            <ConfirmDelete
+              props={props}
+              setError={setError}
+              setSuccess={setSuccess}
+            />
+            {/* <Button onClick={submit} variant="danger" style={{ width: "10rem" }}>
             Delete
-          </Button>
-        </div>
-      </Card.Body>
-    </Card>
+          </Button> */}
+          </div>
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 
