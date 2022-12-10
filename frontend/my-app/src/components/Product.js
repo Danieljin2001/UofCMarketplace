@@ -19,7 +19,7 @@ function Product({ props }) {
         {/* <Routes>
           <Route path="/productpage" element={<ProductPage />} />
         </Routes> */}
-        <Link to="/productpage" state={{ props }}>
+        <Link to="/productpage" state={{ props }} style={{}}>
           {/* <a
           href="/productpage"
           style={{ textDecoration: "none", color: "black" }}

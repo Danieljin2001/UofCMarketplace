@@ -48,13 +48,6 @@ const AdminLogin = () => {
                 <Form.Control type="password" />
                 <div className="text-center my-2" style={{ fontSize: "15px" }}>
                   Not registered yet?{" "}
-                  <a
-                    className="link-primary"
-                    href="/signup"
-                    style={{ fontSize: "15px" }}
-                  >
-                    Sign Up
-                  </a>
                 </div>
               </Form.Group>
               <div

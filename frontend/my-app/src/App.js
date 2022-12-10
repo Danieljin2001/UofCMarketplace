@@ -19,6 +19,8 @@ import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminLogin from "./Pages/AdminLogin";
 import AdminRoute from "./AdminRoute";
+import AllPost from "./Pages/AllPost";
+import AllStudent from "./Pages/AllStudent";
 
 const App = () => {
   return (
@@ -47,8 +49,8 @@ const App = () => {
 
         {/* routes only for admin */}
         <Route path="" element={<AdminRoute />}>
-          <Route path="/students" element={null} />
-          <Route path="/posts" element={null} />
+          <Route path="/students" element={<AllStudent />} />
+          <Route path="/posts" element={<AllPost />} />
         </Route>
 
         {/* <Route path="/" element={<Home />} /> */}

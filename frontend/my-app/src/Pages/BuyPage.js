@@ -18,6 +18,7 @@ function BuyPage() {
     <>
       <NavBar />
       <div id="background">
+        <div className="text-center">Buy</div>
         <PostProduct></PostProduct>
         {posts?.map((post) => (
           <Product key={post._id} props={post} />
