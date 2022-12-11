@@ -21,6 +21,9 @@ import AdminLogin from "./Pages/AdminLogin";
 import AdminRoute from "./AdminRoute";
 import AllPost from "./Pages/AllPost";
 import AllStudent from "./Pages/AllStudent";
+import Review from "./Pages/Reviews";
+import Reviews from "./Pages/Reviews";
+import ReviewForm from "./components/ReviewForm";
 
 const App = () => {
   return (
@@ -36,6 +39,9 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/buy" element={<BuyPage />} />
         <Route path="/sell" element={<SellPage />} />
+        <Route path="/productpage" element={<ProductPage />} />
+        <Route path="/review" element={<Reviews />} />
+
         {/* </Route> */}
 
         {/* private routes, just checks if logged in */}
@@ -43,8 +49,8 @@ const App = () => {
           <Route path="/account" element={<Account />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/post" element={<PostPage />} />
-          <Route path="/productpage" element={<ProductPage />} />
           <Route path="/myproducts" element={<MyProductsPage />} />
+          <Route path="/leavereview" element={<ReviewForm />} />
         </Route>
 
         {/* routes only for admin */}

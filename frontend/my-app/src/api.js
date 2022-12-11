@@ -2,6 +2,145 @@ import axios from "axios";
 import { getToken } from "./routeProtection";
 const API = "http://localhost:3001";
 
+export const removeUserLike = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/student/removelike`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
+export const checkIfReviewLiked = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/student/isliked`, data, config);
+  const result = response.data;
+  if (result.success) {
+    return result.liked;
+  } else {
+    return result;
+  }
+};
+
+export const getMyReview = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/student/getreview`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return result.review;
+  } else {
+    return result;
+  }
+};
+
+export const likeReview = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/student/like`, data, config);
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
+export const getAllReviews = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/student/allreviews`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return result.reviews;
+  } else {
+    return result;
+  }
+};
+
+export const submitReview = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/student/leavereview`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
+export const getStudentByID = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/student/getstudent`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return result.user;
+  } else {
+    return result;
+  }
+};
+
 export const updatePassword = async (data) => {
   const config = {
     headers: {

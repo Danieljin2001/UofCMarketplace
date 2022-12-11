@@ -73,6 +73,13 @@ function HeaderAndFooterExample({ props }) {
                 <Button variant="secondary">Close</Button>
               </Link>
             )}
+            <Link to="/review" state={{ props }}>
+              <Button variant="danger">See Reviews</Button>
+            </Link>
+
+            <Link to="/leavereview" state={{ props }}>
+              <Button variant="danger">Review</Button>
+            </Link>
 
             <Button variant="primary">Message</Button>
           </div>

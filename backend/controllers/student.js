@@ -4,6 +4,21 @@ import jwt from "jsonwebtoken";
 import { getAdmin } from "./admin";
 const { ObjectId } = require("mongodb");
 
+export const getStu = async (req, res) => {
+  try {
+    const { id } = req.body;
+    console.log("finding student w id=...", id);
+    var stu = await Student.findOne({ _id: ObjectId(id) });
+    console.log("student= ", stu);
+    if (!stu) {
+      return res.json({ error: "No Student" });
+    }
+    return res.status(200).json({ success: true, user: stu });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const changeStudentPassword = async (req, res) => {
   try {
     const stu = await getStudent(req, res);
