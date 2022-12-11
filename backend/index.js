@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import { studentRouter } from "./routes/student";
 import socketEvents from "./SocketEvents";
 import socket from "socket.io";
+import { msgRouter } from "./routes/message";
 
 const server = async () => {
   // create express server
@@ -26,9 +27,9 @@ const server = async () => {
     res.send("Hello Wrld");
   });
 
-  // two main routers, one only for admins and other for students
   app.use("/api/admin", adminRouter);
   app.use("/api/student", studentRouter);
+  app.use("/api/msg", msgRouter);
 
   // start express server on port in env file
   // connect to database first
