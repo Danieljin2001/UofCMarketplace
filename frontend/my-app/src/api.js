@@ -2,6 +2,27 @@ import axios from "axios";
 import { getToken } from "./routeProtection";
 const API = "http://localhost:3001";
 
+export const updatePassword = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/student/updatepw`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
 export const getAllAdminStudents = async (data) => {
   const config = {
     headers: {
