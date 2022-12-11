@@ -5,6 +5,8 @@ const express = require("express");
 import { adminRouter } from "./routes/admin";
 import mongoose from "mongoose";
 import { studentRouter } from "./routes/student";
+import socketEvents from "./SocketEvents";
+import socket from "socket.io";
 
 const server = async () => {
   // create express server
@@ -35,9 +37,14 @@ const server = async () => {
     .then(() => {
       console.log("Connected to DB");
       const port = process.env.PORT;
-      app.listen(port, () => {
+      const myServer = app.listen(port, () => {
         console.log(`Server running at http://localhost:${port}`);
       });
+      socketEvents(
+        socket(myServer, {
+          cors: { origin: "*" },
+        })
+      );
     })
     .catch((error) => {
       console.error(error);
