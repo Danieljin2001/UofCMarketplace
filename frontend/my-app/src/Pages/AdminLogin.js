@@ -46,9 +46,6 @@ const AdminLogin = () => {
               <Form.Group className="mb-3" controlId="pass">
                 <Form.Label className="text-white">Password</Form.Label>
                 <Form.Control type="password" />
-                <div className="text-center my-2" style={{ fontSize: "15px" }}>
-                  Not registered yet?{" "}
-                </div>
               </Form.Group>
               <div
                 style={{
