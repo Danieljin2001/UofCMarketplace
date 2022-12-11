@@ -52,10 +52,9 @@ function NavBar() {
                       <Nav.Link href="/account">Account</Nav.Link>
                     </>
                   )}
-
-                  <Nav.Link>
-                    <button onClick={logoutUser}>Logout</button>
-                  </Nav.Link>
+                    <Nav.Link>
+                      <button className="btn btn-light" style={{marginTop:"-5px"}} onClick={logoutUser}>Logout</button>
+                    </Nav.Link>
                 </>
               ) : (
                 <>
