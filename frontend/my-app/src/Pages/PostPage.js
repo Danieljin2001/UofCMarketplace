@@ -1,8 +1,11 @@
 import Button from "react-bootstrap/Button";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./PostPage.css";
 import NavBar from "../components/NavBar";
 import { createNewStudentPost } from "../api";
+import ErrorAlert from "../components/ErrorAlert";
+import SuccessAlert from "../components/SuccessAlert";
+
 const options = ["Textbook", "Clothing", "Electronics", "Furniture"];
 function PostPage() {
   const [selected, setSelected] = useState(options[0]);
@@ -15,34 +18,58 @@ function PostPage() {
     price: "",
     contact: "",
   });
+  const canSubmit = useRef(false);
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.id]: e.target.value,
     });
+    console.log(form);
+  };
+
+  const checkForEmptyFields = () => {
+    if (form.title === "") {
+      setError("Post Title Cannot Be Empty");
+    }
+    if (form.description === "") {
+      setError("Post Description Cannot Be Empty");
+    }
+    if (form.adType === "") {
+      setError("Post Ad Type Cannot Be Empty");
+    }
+    if (form.price === "") {
+      setError("Post Price Cannot Be Empty");
+    }
+    canSubmit.current = true;
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
     // console.log("payload= ", form);
     // console.log("options= ", selected);
-
-    const data = {
-      ...form,
-      productType: selected,
-    };
-    console.log("payload= ", data);
-    const response = await createNewStudentPost(data);
-    if (response.error) {
-      setError(response.error);
-      console.log("errors= ", response.error);
+    checkForEmptyFields();
+    if (canSubmit.current) {
+      const data = {
+        ...form,
+        productType: selected,
+      };
+      console.log("payload= ", data);
+      const response = await createNewStudentPost(data);
+      if (response.error) {
+        setError(response.error);
+        console.log("errors= ", response.error);
+      } else {
+        setSuccess("Post Saved");
+      }
     } else {
-      setSuccess("Post Saved");
+      checkForEmptyFields();
     }
   }
   return (
     <>
       <NavBar />
+      {error ? <ErrorAlert props={error} /> : null}
+      {success ? <SuccessAlert props={success} /> : null}
       <div className="text-center">
         <h2 className="text-white">Post Ad</h2>
       </div>
@@ -56,6 +83,7 @@ function PostPage() {
             id="title"
             value={form.title}
             onChange={handleChange}
+            required
           />
         </div>
         {/* Product Description */}
@@ -166,9 +194,6 @@ function PostPage() {
           Post Your Ad
         </Button>
       </div>
-      {success ? <div>Success: {success}</div> : null}
-
-      {error ? <div>Error: {error}</div> : null}
     </>
   );
 }

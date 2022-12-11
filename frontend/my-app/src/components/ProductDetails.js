@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 import { isAuth } from "../routeProtection";
 import NavBar from "./NavBar";
 
@@ -40,7 +41,12 @@ function HeaderAndFooterExample({ props }) {
           >
             {props.desc}{" "}
             {auth ? (
-              <>test@ucalgary.ca </>
+              <>
+                <br />
+                {props.contactInfo ? (
+                  <>Please Contact Me At: {props.contactInfo} </>
+                ) : null}
+              </>
             ) : (
               <>
                 Please <a href="/login"> sign in</a> to view contact info
@@ -56,7 +62,18 @@ function HeaderAndFooterExample({ props }) {
               backgroundColor: "PaleGoldenRod",
             }}
           >
-            <Button variant="secondary">Return Home</Button>
+            {props.adType.toUpperCase() === "BUY" ? (
+              <Link to="/buy">
+                {" "}
+                <Button variant="secondary">Close</Button>
+              </Link>
+            ) : (
+              <Link to="/sell">
+                {" "}
+                <Button variant="secondary">Close</Button>
+              </Link>
+            )}
+
             <Button variant="primary">Message</Button>
           </div>
         </Card.Body>
