@@ -11,6 +11,10 @@ const socketEvents = (io) => {
   io.on("connection", (socket) => {
     console.log("a user connected to ", socket.id);
 
+    socket.on("chat", (data) => {
+      io.sockets.emit("chat", data);
+    });
+
     socket.on(DISCONNECT_EVENT, (socket) => {
       console.log("user disconnected from ", socket.id);
     });

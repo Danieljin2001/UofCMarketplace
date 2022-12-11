@@ -22,7 +22,7 @@ const Chat = () => {
       <div className="container my-4">
         <div className="chat">
           <SideBar />
-          <ChatBox />
+          <ChatBox props={socket} />
         </div>
       </div>
     </>
