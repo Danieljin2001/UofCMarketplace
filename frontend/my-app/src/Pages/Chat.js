@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../components/ChatBox";
 import ChatInput from "../components/ChatInput";
 import NavBar from "../components/NavBar";
@@ -8,13 +8,13 @@ import { io } from "socket.io-client";
 import { getDecodedToken } from "../routeProtection";
 
 const Chat = () => {
+  const isSecondRender = useRef(false);
   const [socket, setSocket] = useState(null);
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    setSocket(io("http://localhost:3001"));
-    const userId = getDecodedToken().id;
-    setUserId(userId);
+    isSecondRender.current && setSocket(io("http://localhost:3001"));
+    isSecondRender.current = true;
   }, []);
   return (
     <>

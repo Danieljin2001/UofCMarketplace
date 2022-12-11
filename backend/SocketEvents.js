@@ -9,7 +9,11 @@ const DISCONNECT_EVENT = "DISCONNECT";
 
 const socketEvents = (io) => {
   io.on("connection", (socket) => {
-    console.log("a user connected");
+    console.log("a user connected to ", socket.id);
+
+    socket.on(DISCONNECT_EVENT, (socket) => {
+      console.log("user disconnected from ", socket.id);
+    });
   });
 };
 
