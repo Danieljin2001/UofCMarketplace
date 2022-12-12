@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function TypingBubble({ userEmail }) {
+function TypingBubble({ userEmail, innerRef }) {
   const [username, setUsername] = useState("Loading...");
 
   useEffect(() => {
@@ -10,6 +10,7 @@ function TypingBubble({ userEmail }) {
 
   return (
     <div
+      ref={innerRef}
       style={{ backgroundColor: "lightblue " }}
       className="typing mr-auto ml-5 mb-1"
     >

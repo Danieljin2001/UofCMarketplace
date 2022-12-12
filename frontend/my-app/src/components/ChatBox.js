@@ -215,7 +215,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg, socket }) => {
               </div>
             ))}
             {typing && (
-              <TypingBubble ref={scroll} userEmail={currentUser.email} />
+              <TypingBubble innerRef={scroll} userEmail={friendData.email} />
             )}
           </div>
 
