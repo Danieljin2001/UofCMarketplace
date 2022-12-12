@@ -7,7 +7,7 @@ const IS_TYPING_EVENT = "IS_TYPING";
 const STOP_TYPING_EVENT = "STOP_TYPING";
 const READ_MESSAGES_EVENT = "READ_MESSAGES";
 const UPDATE_NAVBAR_EVENT = "UPDATE_NAVBAR";
-const DISCONNECT_EVENT = "DISCONNECT";
+const DISCONNECT_EVENT = "disconnect";
 let activeUsers = [];
 
 const socketEvents = (io) => {
@@ -34,11 +34,18 @@ const socketEvents = (io) => {
       }
     });
 
-    socket.on(DISCONNECT_EVENT, () => {
-      // find user who wants to disconnect
+    socket.on(DISCONNECT_EVENT, (id) => {
       activeUsers = activeUsers.filter((user) => user.socketId !== socket.id);
-      console.log("User Disconnected", activeUsers);
 
+      // console.log("userid is disconecting...= ", id);
+      // const usr = activeUsers.find((user) => user.id === id);
+      // console.log("found active usr= ", usr);
+      // // find user who wants to disconnect
+      // activeUsers = activeUsers.filter(
+      //   (user) => user.socketId !== socket.id && user.id === usr.id
+      // );
+      console.log("User Disconnected", activeUsers);
+      socket.disconnect();
       io.emit("get-users", activeUsers);
     });
   });

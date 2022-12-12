@@ -12,10 +12,11 @@ const wsEndpoint = "http://localhost:3001";
 const JOIN_EVENT = "JOIN";
 const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
-const DISCONNECT_EVENT = "DISCONNECT";
+const DISCONNECT_EVENT = "disconnect";
 
 const Chat = () => {
   const socket = useRef(null);
+  const isSecondRender = useRef(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [chats, setChats] = useState([]);
@@ -26,17 +27,19 @@ const Chat = () => {
   const [receiveMsg, setReceiveMsg] = useState(null);
   console.log("SOCKETID= ", socket.current?.id);
   const checkOnlineStatus = (chat) => {
-    const isMember = chat.members.find((member) => member !== user._id);
+    const isMember = chat.members.find((member) => member !== user.id);
     const online = onlineUsers.find((user) => user.id === isMember);
     return online ? true : false;
   };
   useEffect(() => {
     if (!user) return;
+    if (socket.current && socket.current.connected) return;
     socket.current = io(wsEndpoint);
     socket.current.emit(JOIN_EVENT, user._id); // user joins
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
     });
+
     socket.current.on(RECEIVE_MESSAGE_EVENT, (data) => {
       console.log("received msg on frontend= ", data);
       setReceiveMsg(data);
@@ -46,7 +49,8 @@ const Chat = () => {
       socket.current.off(JOIN_EVENT);
       socket.current.off("get-users");
       socket.current.off(RECEIVE_MESSAGE_EVENT);
-      socket.current.emit(DISCONNECT_EVENT);
+      // socket.current.emit(DISCONNECT_EVENT);
+      socket.current.disconnect();
     };
   }, [user]);
 
@@ -82,7 +86,7 @@ const Chat = () => {
   async function getUser() {
     const data = await getStudent();
     setUser(data);
-    console.log(user);
+    console.log("user= ", user);
   }
   useEffect(() => {
     getUser();

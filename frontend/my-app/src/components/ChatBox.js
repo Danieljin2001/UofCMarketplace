@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getStudentFriend, getStudentMsgs, sendMsgToStudent } from "../api";
 import Message from "../components/Message";
 import formatDate from "../formatDate";
@@ -14,6 +14,11 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [msgs, setMsgs] = useState([]);
   const [newMsg, setNewMsg] = useState("");
+  const scroll = useRef();
+
+  useEffect(() => {
+    scroll.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [msgs]);
 
   useEffect(() => {
     console.log("Message Arrived: ", receiveMsg);
@@ -24,11 +29,24 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
     }
   }, [receiveMsg]);
 
-  function handleKey(e) {
+  async function handleKey(e) {
     if (newMsg.length > 0) {
       let myMsg = newMsg;
       console.log("msg to send= ", myMsg);
       setNewMsg("");
+      const payload = {
+        senderId: currentUser._id,
+        text: myMsg,
+        chatId: chat._id,
+      };
+      // send msg to db
+      const result = await sendMsgToStudent(payload);
+      // update old msgs with new msg
+      console.log("msg result= ", result);
+      setMsgs([...msgs, result]);
+      // send msg to socket
+      const receiverId = friendData._id;
+      setSendMsg({ ...result, receiverId });
     }
   }
 
@@ -118,6 +136,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
           >
             {msgs.map((msg) => (
               <div
+                ref={scroll}
                 key={msg._id}
                 className="d-flex flex-column justify-content-space-between my-2 py-2 px-2"
                 style={

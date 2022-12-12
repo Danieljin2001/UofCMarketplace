@@ -37,7 +37,7 @@ const SideBar = ({ data, currentUser, online }) => {
         <Loading />
       ) : (
         <div className="">
-          {online && (
+          {online === true ? (
             <svg height="100" width="100">
               <circle
                 cx="50"
@@ -49,7 +49,22 @@ const SideBar = ({ data, currentUser, online }) => {
               />
               Sorry, your browser does not support inline SVG.
             </svg>
+          ) : (
+            <svg height="100" width="100">
+              <circle
+                cx="50"
+                cy="50"
+                r="0.5rem"
+                stroke="black"
+                stroke-width="3"
+                fill="gray"
+              />
+              Sorry, your browser does not support inline SVG.
+            </svg>
           )}
+          <span style={{ color: online ? "#51e200" : "" }}>
+            {online ? "Online" : "Offline"}
+          </span>
           <CgProfile /> <span>{friendData.email}</span>
         </div>
       )}
