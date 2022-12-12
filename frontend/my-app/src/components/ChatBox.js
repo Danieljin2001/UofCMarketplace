@@ -7,9 +7,14 @@ import Loading from "./Loading";
 import { InputGroup, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import InputEmoji from "react-input-emoji";
+import TypingBubble from "./TypingBubble";
 
+const IS_TYPING_EVENT = "IS_TYPING";
+const STOP_TYPING_EVENT = "STOP_TYPING";
+let timeout;
 let txt = "Click A Chat To View Conversation";
-const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
+const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg, socket }) => {
+  const [typing, setTyping] = useState(false);
   const [friendData, setFriendData] = useState(null);
   const [isSelected, setIsSelected] = useState(false);
   const [msgs, setMsgs] = useState([]);
@@ -18,7 +23,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
 
   useEffect(() => {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
-  }, [msgs]);
+  }, [msgs, typing]);
 
   useEffect(() => {
     console.log("Message Arrived: ", receiveMsg);
@@ -51,6 +56,18 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
   }
 
   function handleChange(e) {
+    const payload = { receiverId: friendData._id };
+    if (e.target.value === "") {
+      socket.emit(STOP_TYPING_EVENT, payload);
+    } else {
+      socket.emit(IS_TYPING_EVENT, payload);
+
+      if (timeout) clearTimeout(timeout);
+
+      const cb = () => socket.emit(STOP_TYPING_EVENT, payload);
+      timeout = setTimeout(cb, 5000);
+    }
+
     setNewMsg(e.target.value);
   }
 
@@ -88,6 +105,8 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
   useEffect(() => {
     if (friendData !== null && chat !== null) {
       setIsSelected(true);
+      socket.on(IS_TYPING_EVENT, () => setTyping(true));
+      socket.on(STOP_TYPING_EVENT, () => setTyping(false));
     }
   }, [friendData, currentUser, chat]);
   useEffect(() => {
@@ -195,6 +214,9 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
                 </div>
               </div>
             ))}
+            {typing && (
+              <TypingBubble ref={scroll} userEmail={currentUser.email} />
+            )}
           </div>
 
           <InputGroup

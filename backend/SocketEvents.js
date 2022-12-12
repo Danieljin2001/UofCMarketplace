@@ -34,6 +34,22 @@ const socketEvents = (io) => {
       }
     });
 
+    socket.on(IS_TYPING_EVENT, (data) => {
+      const { receiverId } = data;
+      const receiverUser = activeUsers.find((user) => user.id === receiverId);
+      if (receiverUser) {
+        io.to(receiverUser.socketId).emit(IS_TYPING_EVENT);
+      }
+    });
+
+    socket.on(STOP_TYPING_EVENT, (data) => {
+      const { receiverId } = data;
+      const receiverUser = activeUsers.find((user) => user.id === receiverId);
+      if (receiverUser) {
+        io.to(receiverUser.socketId).emit(STOP_TYPING_EVENT);
+      }
+    });
+
     socket.on(DISCONNECT_EVENT, (id) => {
       activeUsers = activeUsers.filter((user) => user.socketId !== socket.id);
 

@@ -12,7 +12,6 @@ const wsEndpoint = "http://localhost:3001";
 const JOIN_EVENT = "JOIN";
 const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
-const DISCONNECT_EVENT = "disconnect";
 
 const Chat = () => {
   const socket = useRef(null);
@@ -45,6 +44,7 @@ const Chat = () => {
       setReceiveMsg(data);
       // receiveMsg.current = data;
     });
+
     return () => {
       socket.current.off(JOIN_EVENT);
       socket.current.off("get-users");
@@ -145,6 +145,7 @@ const Chat = () => {
             currentUser={user}
             setSendMsg={setSendMsg}
             receiveMsg={receiveMsg}
+            socket={socket.current}
           />
         </div>
       </div>
