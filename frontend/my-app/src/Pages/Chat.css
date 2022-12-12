@@ -16,7 +16,7 @@
 }
 
 .chat-header-click > hr {
-  border: none;
+  border: solid;
   height: 0.4rem;
   /* Set the hr color */
   color: #0000ff; /* old IE */

@@ -119,7 +119,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
               class="py-3"
               style={{
                 color: "black",
-                backgroundColor: "white",
+                backgroundColor: "gray",
                 borderBottom: "1px solid black",
               }}
             >
@@ -127,7 +127,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
             </div>
           </div>
           <div
-            className="container"
+            className="container d-flex flex-column justify-content-space-between "
             style={{
               backgroundColor: "white",
               height: "83%",
@@ -138,7 +138,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg }) => {
               <div
                 ref={scroll}
                 key={msg._id}
-                className="d-flex flex-column justify-content-space-between my-2 py-2 px-2"
+                className=" my-2 py-2 px-2"
                 style={
                   msg.senderId === currentUser._id
                     ? {

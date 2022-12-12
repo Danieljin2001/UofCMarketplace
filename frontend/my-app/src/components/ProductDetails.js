@@ -1,12 +1,28 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { isAuth } from "../routeProtection";
+import { createNewChatBetweenStudents } from "../api";
+import { getDecodedToken, isAuth } from "../routeProtection";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 function HeaderAndFooterExample({ props }) {
   console.log("props in detail= ", props);
   const auth = isAuth();
+  const navigate = useNavigate();
+  async function handleMessage() {
+    if (props.ownerID) {
+      // create a chat and then redirect to the chat page
+      const result = await createNewChatBetweenStudents({
+        senderId: getDecodedToken().id,
+        receiverId: props.ownerID,
+      });
+      if (result) {
+        // redirect to chat page since the chat is created
+        navigate("/chat");
+      }
+    }
+  }
   return (
     <>
       <NavBar />
@@ -74,7 +90,9 @@ function HeaderAndFooterExample({ props }) {
               </Link>
             )}
 
-            <Button variant="primary">Message</Button>
+            <Button onClick={handleMessage} variant="primary">
+              Message
+            </Button>
           </div>
         </Card.Body>
         <Card.Footer className="text-muted">{props.createdAt}</Card.Footer>

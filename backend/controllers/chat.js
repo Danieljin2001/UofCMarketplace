@@ -5,6 +5,10 @@ export const createChat = async (req, res) => {
     members: [req.body.senderId, req.body.receiverId],
   });
   try {
+    const doesChatExist = await ChatModel.find({
+      members: [req.body.senderId, req.body.receiverId],
+    });
+    if (doesChatExist) return res.status(200).json({ exists: true });
     const result = await newChat.save();
     res.status(200).json(result);
   } catch (error) {

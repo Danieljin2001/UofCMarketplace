@@ -2,6 +2,23 @@ import axios from "axios";
 import { getDecodedToken, getToken } from "./routeProtection";
 const API = "http://localhost:3001";
 
+export const createNewChatBetweenStudents = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/chat/`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
 export const sendMsgToStudent = async (data) => {
   const config = {
     headers: {
