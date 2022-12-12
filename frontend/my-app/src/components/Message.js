@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 const Message = ({ props }) => {
   const [msg, setMsg] = useState("");
-  useEffect(() => {
-    props.on("chat", function (data) {
-      setMsg(data.msg);
-    });
-  }, []);
+  // useEffect(() => {
+  //   props.on("chat", function (data) {
+  //     setMsg(data.msg);
+  //   });
+  // }, []);
 
   return (
     <>

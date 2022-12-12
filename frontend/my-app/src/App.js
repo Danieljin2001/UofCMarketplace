@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, useEffect } from "react";
 import NavBar from "./components/NavBar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -14,7 +14,12 @@ import Chat from "./Pages/Chat";
 import ProductPage from "./Pages/ProductPage";
 import MyProductsPage from "./Pages/MyProducts";
 import UpdatePassword from "./Pages/UpdatePassword";
-import { AuthenticatedRoute } from "./routeProtection";
+import {
+  AuthenticatedRoute,
+  getDecodedToken,
+  getToken,
+  isAuth,
+} from "./routeProtection";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminLogin from "./Pages/AdminLogin";

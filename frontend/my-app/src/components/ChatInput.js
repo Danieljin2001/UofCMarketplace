@@ -4,17 +4,17 @@ import Button from "react-bootstrap/Button";
 
 const ChatInput = ({ props }) => {
   console.log(props);
-  const [msg, setMsg] = useState("");
+  const [newMsg, setNewMsg] = useState("");
   function handleChange(e) {
-    setMsg(e.target.value);
+    setNewMsg(e.target.value);
   }
 
   function handleSend(e) {
     e.preventDefault();
-    if (msg.length > 0) {
-      props.emit("chat", {
-        msg: msg,
-      });
+    if (newMsg.length > 0) {
+      let myMsg = newMsg;
+      console.log("msg to send= ", myMsg);
+      setNewMsg("");
     }
   }
   return (
@@ -24,7 +24,7 @@ const ChatInput = ({ props }) => {
     >
       <Form.Control
         type="text"
-        value={msg}
+        value={newMsg}
         onChange={handleChange}
         placeholder="Message..."
       />

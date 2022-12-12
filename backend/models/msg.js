@@ -2,21 +2,19 @@ import mongoose from "mongoose";
 
 const MessageSchema = new mongoose.Schema(
   {
+    chatId: {
+      type: String,
+    },
     senderId: {
       type: String,
     },
-    receiverId: {
+    text: {
       type: String,
-    },
-    message: {
-      type: String,
-    },
-    read: {
-      type: Date,
-      default: null,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 const Message = mongoose.model("message", MessageSchema);
