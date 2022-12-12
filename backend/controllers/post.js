@@ -68,9 +68,11 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 export const updatePost = async (req, res) => {
   try {
     const { postID } = req.body;
+    let doc = await Post.findOneAndUpdate({_id:postID}, data)
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -101,3 +103,18 @@ export const createNewPost = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const getPost = async (req, res) => {
+  try {
+    const {postID} = req.body;
+    const stu = await getStudent(req, res);
+    const myPost = await Post.findById(ObjectId(postID));
+    if (!myPost) return res.json({error: "No Post Found"});
+    else
+      res.status(200).json({msg: myPost});
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+};
+
+

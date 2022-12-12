@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import React, {useEffect, useRef, useState} from "react";
 import "./PostPage.css";
 import NavBar from "../components/NavBar";
-import {getStudentPosts, updatePost} from "../api";
+import {getAllAdminPosts, getStudentPosts, updatePost, getPost} from "../api";
 import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
 
@@ -12,6 +12,32 @@ function UpdatePost() {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [post, setPost] = useState(null);
+    let values = {
+        id: "",
+        title: "",
+        desc: "",
+        adType: "",
+        price: "",
+        contact: ""
+    }
+    async function loadValues() {
+        JSON.stringify(post)
+        values.id = post[0]['_id'];
+        values.title = post[0]['title'];
+        values.desc = post[0]['desc'];
+        values.adType = post[0]['adType'];
+        values.price = post[0]['price'];
+        values.contact = post[0]['contact'];
+    }
+    async function getData() {
+        const result = await getPost();
+        console.log("result== ", result);
+        setPost(result);
+    }
+    useEffect(() => {
+        getData();
+        loadValues();
+    }, []);
     const [form, setForm] = useState({
         title: "",
         description: "",
@@ -97,6 +123,7 @@ function UpdatePost() {
                         id="description"
                         value={form.description}
                         onChange={handleChange}
+                        placeholder={values.desc}
                     />
                 </div>
                 {/* Ad Type */}

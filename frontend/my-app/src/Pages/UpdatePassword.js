@@ -16,13 +16,13 @@ const UpdatePassword = () => {
   {
     event.preventDefault();
 
-    const data = {
+    const user = {
       password: event.target[0].value,
       newPassword: event.target[1].value,
       confirmPassword: event.target[2].value,
     };
 
-    const response = await updatePassword(data);
+    const response = await updatePassword(user);
     console.log("response== ", response);
     if (!response.error) {
 
