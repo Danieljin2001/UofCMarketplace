@@ -25,6 +25,7 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [sendMsg, setSendMsg] = useState(null);
+
   // const receiveMsg = useRef();
   const [receiveMsg, setReceiveMsg] = useState(null);
   console.log("SOCKETID= ", socket.current?.id);
@@ -50,15 +51,32 @@ const Chat = () => {
       // receiveMsg.current = data;
     });
 
-    socket.current.on(IS_TYPING_EVENT, () => setTyping(true));
-    socket.current.on(STOP_TYPING_EVENT, () => setTyping(false));
+    // socket.current.on(IS_TYPING_EVENT, (id) => {
+    //   setTyping(true);
+    //   // if (currentChat?._id) {
+    //   //   if (id === currentChat._id) {
+    //   //     setTyping(true);
+    //   //   }
+    //   // }
+
+    //   // id === currentChat?._id ? setTyping(true) : null
+    // });
+    // socket.current.on(STOP_TYPING_EVENT, (id) => {
+    //   setTyping(false);
+
+    //   // if (currentChat?._id) {
+    //   //   if (id === currentChat._id) {
+    //   //     setTyping(false);
+    //   //   }
+    //   // }
+    // });
 
     return () => {
       socket.current.off(JOIN_EVENT);
       socket.current.off("get-users");
       socket.current.off(RECEIVE_MESSAGE_EVENT);
-      socket.current.off(IS_TYPING_EVENT);
-      socket.current.off(STOP_TYPING_EVENT);
+      // socket.current.off(IS_TYPING_EVENT);
+      // socket.current.off(STOP_TYPING_EVENT);
       // socket.current.emit(DISCONNECT_EVENT);
       socket.current.disconnect();
     };
@@ -142,6 +160,7 @@ const Chat = () => {
                     className="chat-header-click"
                     onClick={() => {
                       console.log("clicked a chat");
+
                       setCurrentChat(chat);
                     }}
                   >

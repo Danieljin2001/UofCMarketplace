@@ -29,6 +29,45 @@ const ChatBox = ({
   const scroll = useRef();
 
   useEffect(() => {
+    if (socket) {
+      socket.on(IS_TYPING_EVENT, (id) => {
+        if (chat._id === id) {
+          setTyping(true);
+        } else {
+          setTyping(null);
+        }
+        // if (currentChat?._id) {
+        //   if (id === currentChat._id) {
+        //     setTyping(true);
+        //   }
+        // }
+
+        // id === currentChat?._id ? setTyping(true) : null
+      });
+      socket.on(STOP_TYPING_EVENT, (id) => {
+        if (chat._id === id) {
+          setTyping(false);
+        } else {
+          setTyping(null);
+        }
+
+        // if (currentChat?._id) {
+        //   if (id === currentChat._id) {
+        //     setTyping(false);
+        //   }
+        // }
+      });
+    }
+
+    return () => {
+      if (socket) {
+        socket.off(IS_TYPING_EVENT);
+        socket.off(STOP_TYPING_EVENT);
+      }
+    };
+  }, [currentUser, friendData, chat]);
+
+  useEffect(() => {
     scroll.current?.scrollIntoView({
       behavior: "smooth",
       alignToTop: false,
@@ -67,7 +106,7 @@ const ChatBox = ({
 
   function handleChange(e) {
     const otherUser = chat?.members?.find((id) => id !== currentUser._id);
-    const payload = { receiverId: otherUser };
+    const payload = { receiverId: otherUser, chatId: chat._id };
     if (e.target.value === "") {
       socket.emit(STOP_TYPING_EVENT, payload);
     } else {
@@ -224,7 +263,7 @@ const ChatBox = ({
                 </div>
               </div>
             ))}
-            {typing && friendData.email !== currentUser.email && (
+            {typing && (
               <TypingBubble innerRef={scroll} userEmail={friendData.email} />
             )}
           </div>
