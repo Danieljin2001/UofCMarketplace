@@ -25,14 +25,7 @@ const SideBar = ({ data, currentUser, online }) => {
   }, [friendData]);
 
   return (
-    <div
-      className="container d-flex flex-row justify-content-space-between text-center"
-      style={{
-        borderRight: "1px solid black",
-        flex: "1",
-        fontSize: "1rem",
-      }}
-    >
+    <div className="container d-flex flex-row justify-content-space-between text-center">
       {loading ? (
         <Loading />
       ) : (

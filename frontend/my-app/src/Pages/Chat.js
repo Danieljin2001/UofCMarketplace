@@ -97,7 +97,7 @@ const Chat = () => {
   }, [user]);
 
   useEffect(() => {
-    if (user !== null && chats.length > 0) {
+    if (user !== null && chats.length >= 0) {
       setLoading(false);
     }
   }, [user, chats]);
@@ -120,23 +120,37 @@ const Chat = () => {
             <Loading />
           ) : (
             <div className="chat-list">
-              {chats.map((chat) => (
-                <div
-                  key={chat._id}
-                  className="chat-header-click"
-                  onClick={() => {
-                    console.log("clicked a chat");
-                    setCurrentChat(chat);
-                  }}
+              {chats.length ? (
+                chats.map((chat) => (
+                  <div
+                    style={{
+                      borderRight: "1px solid #5D3FD3",
+                      flex: "1",
+                      fontSize: "1rem",
+                    }}
+                    key={chat._id}
+                    className="chat-header-click"
+                    onClick={() => {
+                      console.log("clicked a chat");
+                      setCurrentChat(chat);
+                    }}
+                  >
+                    <SideBar
+                      online={checkOnlineStatus(chat)}
+                      data={chat}
+                      currentUser={user}
+                    />
+                    <hr />
+                  </div>
+                ))
+              ) : (
+                <h2
+                  style={{ borderRight: "1px solid #5D3FD3" }}
+                  className="text-white p-4"
                 >
-                  <SideBar
-                    online={checkOnlineStatus(chat)}
-                    data={chat}
-                    currentUser={user}
-                  />
-                  <hr />
-                </div>
-              ))}
+                  You Have No Chats
+                </h2>
+              )}
             </div>
           )}
 
