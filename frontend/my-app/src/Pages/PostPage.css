@@ -11,6 +11,9 @@
     width:250px;
 }
 
+.password{
+    margin-top:-2em;
+}
 
 @media only screen and (min-width:800px) {
     .title-group {

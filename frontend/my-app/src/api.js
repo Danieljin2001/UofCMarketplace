@@ -204,3 +204,24 @@ export const addyLogin = async (data) => {
 
   return result;
 };
+
+export const updatePost = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+      `${API}/api/student/updatepost`,
+      data,
+      config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};

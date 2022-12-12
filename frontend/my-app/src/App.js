@@ -21,6 +21,7 @@ import AdminLogin from "./Pages/AdminLogin";
 import AdminRoute from "./AdminRoute";
 import AllPost from "./Pages/AllPost";
 import AllStudent from "./Pages/AllStudent";
+import UpdatePost from "./Pages/UpdatePost";
 
 const App = () => {
   return (
@@ -45,6 +46,8 @@ const App = () => {
           <Route path="/post" element={<PostPage />} />
           <Route path="/productpage" element={<ProductPage />} />
           <Route path="/myproducts" element={<MyProductsPage />} />
+          <Route path="/updatepass" element={<UpdatePassword />} />
+          <Route path="/updatepost" element={<UpdatePost />} />
         </Route>
 
         {/* routes only for admin */}
