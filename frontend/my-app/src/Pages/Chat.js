@@ -12,6 +12,7 @@ const wsEndpoint = "http://localhost:3001";
 const JOIN_EVENT = "JOIN";
 const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
+const DISCONNECT_EVENT = "DISCONNECT";
 
 const Chat = () => {
   const socket = useRef(null);
@@ -21,8 +22,9 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [sendMsg, setSendMsg] = useState(null);
+  // const receiveMsg = useRef();
   const [receiveMsg, setReceiveMsg] = useState(null);
-
+  console.log("SOCKETID= ", socket.current?.id);
   const checkOnlineStatus = (chat) => {
     const isMember = chat.members.find((member) => member !== user._id);
     const online = onlineUsers.find((user) => user.id === isMember);
@@ -35,9 +37,16 @@ const Chat = () => {
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
     });
+    socket.current.on(RECEIVE_MESSAGE_EVENT, (data) => {
+      console.log("received msg on frontend= ", data);
+      setReceiveMsg(data);
+      // receiveMsg.current = data;
+    });
     return () => {
       socket.current.off(JOIN_EVENT);
       socket.current.off("get-users");
+      socket.current.off(RECEIVE_MESSAGE_EVENT);
+      socket.current.emit(DISCONNECT_EVENT);
     };
   }, [user]);
 
@@ -53,17 +62,17 @@ const Chat = () => {
   }, [sendMsg]);
 
   // receive msg from socket
-  useEffect(() => {
-    if (socket.current === null) return;
-    console.log("retrieved msg event");
-    socket.current.on(RECEIVE_MESSAGE_EVENT, (data) => {
-      console.log("received msg on frontend= ", data);
-      setReceiveMsg(data);
-    });
-    return () => {
-      socket.current.off(RECEIVE_MESSAGE_EVENT);
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (socket.current === null) return;
+  //   console.log("retrieved msg event");
+  //   socket.current.on(RECEIVE_MESSAGE_EVENT, (data) => {
+  //     console.log("received msg on frontend= ", data);
+  //     setReceiveMsg(data);
+  //   });
+  //   return () => {
+  //     socket.current.off(RECEIVE_MESSAGE_EVENT);
+  //   };
+  // }, []);
 
   async function getChats() {
     const data = await getStudentChats();
