@@ -12,8 +12,7 @@ const wsEndpoint = "http://localhost:3001";
 const JOIN_EVENT = "JOIN";
 const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
-const IS_TYPING_EVENT = "IS_TYPING";
-const STOP_TYPING_EVENT = "STOP_TYPING";
+const GET_ACTIVE_USERS_EVENT = "get-users";
 
 const Chat = () => {
   const [typing, setTyping] = useState(false);
@@ -40,7 +39,7 @@ const Chat = () => {
     if (socket.current && socket.current.connected) return;
     socket.current = io(wsEndpoint);
     socket.current.emit(JOIN_EVENT, user._id); // user joins
-    socket.current.on("get-users", (users) => {
+    socket.current.on(GET_ACTIVE_USERS_EVENT, (users) => {
       setOnlineUsers(users);
       console.log("oneline users= ", onlineUsers);
     });
@@ -73,7 +72,7 @@ const Chat = () => {
 
     return () => {
       socket.current.off(JOIN_EVENT);
-      socket.current.off("get-users");
+      socket.current.off(GET_ACTIVE_USERS_EVENT);
       socket.current.off(RECEIVE_MESSAGE_EVENT);
       // socket.current.off(IS_TYPING_EVENT);
       // socket.current.off(STOP_TYPING_EVENT);

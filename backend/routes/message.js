@@ -12,8 +12,8 @@ import { verifyToken } from "../utils/verifyToken";
 
 export const msgRouter = express.Router();
 
-msgRouter.post("/add", addMessage);
-msgRouter.post("/", getMessages);
+msgRouter.post("/add", verifyToken, addMessage);
+msgRouter.post("/", verifyToken, getMessages);
 
 // msgRouter.post("/getuserchats", verifyToken, getMyChats);
 // msgRouter.post("/sendmsg", verifyToken, sendNewMessage);

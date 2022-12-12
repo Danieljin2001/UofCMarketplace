@@ -1,13 +1,10 @@
 const JOIN_EVENT = "JOIN";
 const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
-
-const MESSAGE_NOTIFICATION_EVENT = "MESSAGE_NOTIFICATION";
 const IS_TYPING_EVENT = "IS_TYPING";
 const STOP_TYPING_EVENT = "STOP_TYPING";
-const READ_MESSAGES_EVENT = "READ_MESSAGES";
-const UPDATE_NAVBAR_EVENT = "UPDATE_NAVBAR";
 const DISCONNECT_EVENT = "disconnect";
+const GET_ACTIVE_USERS_EVENT = "get-users";
 let activeUsers = [];
 
 const socketEvents = (io) => {
@@ -19,7 +16,7 @@ const socketEvents = (io) => {
         activeUsers.push({ id: newUserId, socketId: socket.id });
       }
       console.log("New User Connected", activeUsers);
-      io.emit("get-users", activeUsers);
+      io.emit(GET_ACTIVE_USERS_EVENT, activeUsers);
     });
 
     socket.on(NEW_MESSAGE_EVENT, (data) => {
@@ -62,7 +59,7 @@ const socketEvents = (io) => {
       // );
       console.log("User Disconnected", activeUsers);
       socket.disconnect();
-      io.emit("get-users", activeUsers);
+      io.emit(GET_ACTIVE_USERS_EVENT, activeUsers);
     });
   });
 };

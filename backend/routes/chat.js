@@ -5,6 +5,6 @@ const express = require("express");
 
 export const chatRouter = express.Router();
 
-chatRouter.post("/", createChat);
-chatRouter.post("/:userId", userChats);
-chatRouter.post("/find/:firstId/:secondId", findChat);
+chatRouter.post("/", verifyToken, createChat);
+chatRouter.post("/:userId", verifyToken, userChats);
+chatRouter.post("/find/:firstId/:secondId", verifyToken, findChat);

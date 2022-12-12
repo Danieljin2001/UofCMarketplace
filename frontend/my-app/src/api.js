@@ -70,7 +70,7 @@ export const getStudentFriend = async (data) => {
   }
 };
 
-export const getStudentChats = async () => {
+export const getStudentChats = async (data) => {
   const config = {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -80,6 +80,7 @@ export const getStudentChats = async () => {
 
   const response = await axios.post(
     `${API}/api/chat/${getDecodedToken().id}`,
+    data,
     config
   );
   const result = response.data;
