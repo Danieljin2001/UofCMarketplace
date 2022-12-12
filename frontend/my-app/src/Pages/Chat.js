@@ -12,6 +12,8 @@ const wsEndpoint = "http://localhost:3001";
 const JOIN_EVENT = "JOIN";
 const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
+const IS_TYPING_EVENT = "IS_TYPING";
+const STOP_TYPING_EVENT = "STOP_TYPING";
 
 const Chat = () => {
   const [typing, setTyping] = useState(false);
@@ -27,10 +29,11 @@ const Chat = () => {
   const [receiveMsg, setReceiveMsg] = useState(null);
   console.log("SOCKETID= ", socket.current?.id);
   const checkOnlineStatus = (chat) => {
-    const isMember = chat.members.find((member) => member !== user.id);
+    const isMember = chat.members.find((member) => member !== user._id);
     const online = onlineUsers.find((user) => user.id === isMember);
     return online ? true : false;
   };
+
   useEffect(() => {
     if (!user) return;
     if (socket.current && socket.current.connected) return;
@@ -38,6 +41,7 @@ const Chat = () => {
     socket.current.emit(JOIN_EVENT, user._id); // user joins
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
+      console.log("oneline users= ", onlineUsers);
     });
 
     socket.current.on(RECEIVE_MESSAGE_EVENT, (data) => {
@@ -46,10 +50,15 @@ const Chat = () => {
       // receiveMsg.current = data;
     });
 
+    socket.current.on(IS_TYPING_EVENT, () => setTyping(true));
+    socket.current.on(STOP_TYPING_EVENT, () => setTyping(false));
+
     return () => {
       socket.current.off(JOIN_EVENT);
       socket.current.off("get-users");
       socket.current.off(RECEIVE_MESSAGE_EVENT);
+      socket.current.off(IS_TYPING_EVENT);
+      socket.current.off(STOP_TYPING_EVENT);
       // socket.current.emit(DISCONNECT_EVENT);
       socket.current.disconnect();
     };

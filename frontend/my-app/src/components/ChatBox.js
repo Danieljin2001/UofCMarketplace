@@ -33,7 +33,7 @@ const ChatBox = ({
       behavior: "smooth",
       alignToTop: false,
     });
-  }, [msgs]);
+  }, [msgs, typing]);
 
   useEffect(() => {
     console.log("Message Arrived: ", receiveMsg);
@@ -66,7 +66,8 @@ const ChatBox = ({
   }
 
   function handleChange(e) {
-    const payload = { receiverId: friendData._id };
+    const otherUser = chat?.members?.find((id) => id !== currentUser._id);
+    const payload = { receiverId: otherUser };
     if (e.target.value === "") {
       socket.emit(STOP_TYPING_EVENT, payload);
     } else {
@@ -115,9 +116,8 @@ const ChatBox = ({
   useEffect(() => {
     if (friendData !== null && chat !== null) {
       setIsSelected(true);
-      socket.on(IS_TYPING_EVENT, () => setTyping(true));
-      socket.on(STOP_TYPING_EVENT, () => setTyping(false));
     }
+    return () => {};
   }, [friendData, currentUser, chat]);
   useEffect(() => {
     const getMyMsgs = async (chatId) => {
@@ -170,7 +170,7 @@ const ChatBox = ({
                 style={
                   msg.senderId === currentUser._id
                     ? {
-                        float: "right",
+                        alignSelf: "end",
                         color: "white",
                         backgroundColor: "#147efb",
                         width: "fit-content",
@@ -190,7 +190,7 @@ const ChatBox = ({
                   style={
                     msg.senderId === currentUser._id
                       ? {
-                          float: "right",
+                          alignSelf: "start",
                           color: "white",
                           backgroundColor: "#147efb",
                         }
@@ -224,7 +224,7 @@ const ChatBox = ({
                 </div>
               </div>
             ))}
-            {typing && (
+            {typing && friendData.email !== currentUser.email && (
               <TypingBubble innerRef={scroll} userEmail={friendData.email} />
             )}
           </div>
