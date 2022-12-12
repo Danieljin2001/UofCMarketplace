@@ -13,8 +13,15 @@ const IS_TYPING_EVENT = "IS_TYPING";
 const STOP_TYPING_EVENT = "STOP_TYPING";
 let timeout;
 let txt = "Click A Chat To View Conversation";
-const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg, socket }) => {
-  const [typing, setTyping] = useState(false);
+const ChatBox = ({
+  chat,
+  currentUser,
+  setSendMsg,
+  receiveMsg,
+  socket,
+  typing,
+  setTyping,
+}) => {
   const [friendData, setFriendData] = useState(null);
   const [isSelected, setIsSelected] = useState(false);
   const [msgs, setMsgs] = useState([]);
@@ -22,8 +29,11 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg, socket }) => {
   const scroll = useRef();
 
   useEffect(() => {
-    scroll.current?.scrollIntoView({ behaviour: "smooth" });
-  }, [msgs, typing]);
+    scroll.current?.scrollIntoView({
+      behavior: "smooth",
+      alignToTop: false,
+    });
+  }, [msgs]);
 
   useEffect(() => {
     console.log("Message Arrived: ", receiveMsg);
@@ -155,7 +165,6 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg, socket }) => {
           >
             {msgs.map((msg) => (
               <div
-                ref={scroll}
                 key={msg._id}
                 className=" my-2 py-2 px-2"
                 style={
@@ -194,6 +203,7 @@ const ChatBox = ({ chat, currentUser, setSendMsg, receiveMsg, socket }) => {
                   {msg.text}
                 </div>
                 <div
+                  ref={scroll}
                   style={
                     msg.senderId === currentUser._id
                       ? {

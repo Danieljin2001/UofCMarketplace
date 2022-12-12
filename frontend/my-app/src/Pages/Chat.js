@@ -14,6 +14,7 @@ const NEW_MESSAGE_EVENT = "NEW_MESSAGE";
 const RECEIVE_MESSAGE_EVENT = "RECEIVE_MESSAGE";
 
 const Chat = () => {
+  const [typing, setTyping] = useState(false);
   const socket = useRef(null);
   const isSecondRender = useRef(false);
   const [user, setUser] = useState(null);
@@ -139,6 +140,8 @@ const Chat = () => {
                       online={checkOnlineStatus(chat)}
                       data={chat}
                       currentUser={user}
+                      typing={typing}
+                      currentChat={currentChat}
                     />
                     <hr />
                   </div>
@@ -160,6 +163,8 @@ const Chat = () => {
             setSendMsg={setSendMsg}
             receiveMsg={receiveMsg}
             socket={socket.current}
+            typing={typing}
+            setTyping={setTyping}
           />
         </div>
       </div>

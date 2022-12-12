@@ -3,8 +3,9 @@ import { getStudentFriend } from "../api";
 import Loading from "./Loading";
 import SideChat from "./SideChat";
 import { CgProfile } from "react-icons/cg";
+import TypingBubble from "./TypingBubble";
 
-const SideBar = ({ data, currentUser, online }) => {
+const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
   const [friendData, setFriendData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -59,6 +60,11 @@ const SideBar = ({ data, currentUser, online }) => {
             {online ? "Online" : "Offline"}
           </span>
           <CgProfile /> <span>{friendData.email}</span>
+          <span>
+            {typing && currentChat._id === data._id && (
+              <TypingBubble userEmail={friendData.email} />
+            )}
+          </span>
         </div>
       )}
     </div>
