@@ -2,6 +2,8 @@ import Post from "../models/post";
 import Student from "../models/student";
 import { getAdmin } from "./admin";
 import { getStudent } from "./student";
+import argon2 from "argon2";
+
 const { ObjectId } = require("mongodb");
 
 export const deleteAdminPost = async (req, res) => {
@@ -71,8 +73,101 @@ export const getAllPosts = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   try {
-    const { postID } = req.body;
-    let doc = await Post.findOneAndUpdate({_id:postID}, data)
+    // check if password matches the token password
+    const stu = await getStudent(req, res);
+    if (!stu) return res.json({ error: "Access Denied" });
+    const { data, fieldToChange } = req.body;
+
+    const comparePW = await argon2.verify(stu.password, data.password);
+    if (!comparePW) return res.json({ error: "Invalid credentials. " });
+
+    console.log("update p w data= ", data);
+    console.log("update p w fields= ", fieldToChange);
+    if (
+      fieldToChange.title &&
+      fieldToChange.description &&
+      fieldToChange.adType &&
+      fieldToChange.price &&
+      fieldToChange.contactInfo &&
+      fieldToChange.productType
+    ) {
+      const { title, price, description, productType, adType, contactInfo } =
+        data;
+      await Post.findOneAndUpdate(
+        { _id: data.postId },
+        { title, price, desc: description, productType, adType, contactInfo }
+      );
+      return res.status(200).json({ success: true });
+    } else if (
+      fieldToChange.title &&
+      fieldToChange.description &&
+      fieldToChange.adType &&
+      fieldToChange.price &&
+      fieldToChange.contactInfo
+    ) {
+      const { title, price, description, productType, adType, contactInfo } =
+        data;
+      await Post.findOneAndUpdate(
+        { _id: data.postId },
+        { title, price, desc: description, productType, adType, contactInfo }
+      );
+      return res.status(200).json({ success: true });
+    } else if (
+      fieldToChange.title &&
+      fieldToChange.description &&
+      fieldToChange.adType &&
+      fieldToChange.price
+    ) {
+      const { title, description, adType, price } = data;
+      await Post.findOneAndUpdate(
+        { _id: data.postId },
+        { title, desc: description, adType, price }
+      );
+      return res.status(200).json({ success: true });
+    } else if (
+      fieldToChange.title &&
+      fieldToChange.description &&
+      fieldToChange.adType
+    ) {
+      const { title, description, adType } = data;
+      await Post.findOneAndUpdate(
+        { _id: data.postId },
+        { title, desc: description, adType }
+      );
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.title && fieldToChange.description) {
+      const { title, description } = data;
+      await Post.findOneAndUpdate(
+        { _id: data.postId },
+        { title, desc: description }
+      );
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.description) {
+      const { description } = data;
+      await Post.findOneAndUpdate({ _id: data.postId }, { desc: description });
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.title) {
+      const { title } = data;
+      await Post.findOneAndUpdate({ _id: data.postId }, { title });
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.adType) {
+      const { adType } = data;
+      await Post.findOneAndUpdate({ _id: data.postId }, { adType });
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.price) {
+      const { price } = data;
+      await Post.findOneAndUpdate({ _id: data.postId }, { price });
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.contactInfo) {
+      const { contactInfo } = data;
+      await Post.findOneAndUpdate({ _id: data.postId }, { contactInfo });
+      return res.status(200).json({ success: true });
+    } else if (fieldToChange.productType) {
+      const { productType } = data;
+      await Post.findOneAndUpdate({ _id: data.postId }, { productType });
+      return res.status(200).json({ success: true });
+    }
+    res.status(200).json({ error: "Nothing to Update" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -106,15 +201,12 @@ export const createNewPost = async (req, res) => {
 
 export const getPost = async (req, res) => {
   try {
-    const {postID} = req.body;
+    const { postID } = req.body;
     const stu = await getStudent(req, res);
     const myPost = await Post.findById(ObjectId(postID));
-    if (!myPost) return res.json({error: "No Post Found"});
-    else
-      res.status(200).json({msg: myPost});
+    if (!myPost) return res.json({ error: "No Post Found" });
+    else res.status(200).json({ msg: myPost });
   } catch (error) {
-    res.status(500).json({error: error.message});
+    res.status(500).json({ error: error.message });
   }
 };
-
-

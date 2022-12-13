@@ -4,16 +4,15 @@ import Card from "react-bootstrap/Card";
 import ConfirmDelete from "./ConfirmDelete";
 import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MyProducts({ props }) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
-  async function update()
-  {
-      navigate("/updatepost");
+  function update() {
+    navigate("/updatepost", { state: props });
   }
 
   return (
@@ -69,7 +68,11 @@ function MyProducts({ props }) {
               backgroundColor: "PaleGoldenRod",
             }}
           >
-            <Button variant="success" style={{ width: "10rem" }} onClick={update}>
+            <Button
+              variant="success"
+              style={{ width: "10rem" }}
+              onClick={update}
+            >
               Update
             </Button>
             <ConfirmDelete

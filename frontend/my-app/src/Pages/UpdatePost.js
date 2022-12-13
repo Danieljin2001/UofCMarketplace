@@ -1,241 +1,306 @@
 import Button from "react-bootstrap/Button";
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./PostPage.css";
 import NavBar from "../components/NavBar";
-import {getAllAdminPosts, getStudentPosts, updatePost, getPost} from "../api";
+import { updatePost } from "../api";
 import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
+import { useLocation } from "react-router";
+import Loading from "../components/Loading";
 
 const options = ["Textbook", "Clothing", "Electronics", "Furniture"];
 function UpdatePost() {
-    const [selected, setSelected] = useState(options[0]);
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
-    const [post, setPost] = useState(null);
-    let values = {
-        id: "",
-        title: "",
-        desc: "",
-        adType: "",
-        price: "",
-        contact: ""
+  const [loading, setLoading] = useState(true);
+  const { state } = useLocation();
+  console.log("props in updatepost= ", state);
+  const [selected, setSelected] = useState(options[0]);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [post, setPost] = useState(null);
+  const values = useRef({
+    id: "",
+    title: "",
+    desc: "",
+    adType: "",
+    price: "",
+    contact: "",
+    productType: "",
+  });
+  function loadValues() {
+    values.current.id = post._id;
+    values.current.title = post.title;
+    values.current.desc = post.desc;
+    values.current.adType = post.adType;
+    values.current.price = post.price;
+    values.current.contact = post.contactInfo;
+    values.current.productType = post.productType;
+  }
+  useEffect(() => {
+    if (post === null) return;
+    loadValues();
+    if (post !== null) {
+      setLoading(false);
+      console.log("values= ", values);
     }
-    async function loadValues() {
-        JSON.stringify(post)
-        values.id = post[0]['_id'];
-        values.title = post[0]['title'];
-        values.desc = post[0]['desc'];
-        values.adType = post[0]['adType'];
-        values.price = post[0]['price'];
-        values.contact = post[0]['contact'];
-    }
-    async function getData() {
-        const result = await getPost();
-        console.log("result== ", result);
-        setPost(result);
-    }
-    useEffect(() => {
-        getData();
-        loadValues();
-    }, []);
-    const [form, setForm] = useState({
-        title: "",
-        description: "",
-        adType: "",
-        price: "",
-        contact: "",
-        password: "",
-    });
-    const canSubmit = useRef(false);
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.id]: e.target.value,
-        });
-        console.log(form);
-    };
+  }, [post]);
 
-    const checkForEmptyFields = () => {
-        if (form.title === "") {
-            setError("Post Title Cannot Be Empty");
-        }
-        if (form.description === "") {
-            setError("Post Description Cannot Be Empty");
-        }
-        if (form.adType === "") {
-            setError("Post Ad Type Cannot Be Empty");
-        }
-        if (form.price === "") {
-            setError("Post Price Cannot Be Empty");
-        }
-        canSubmit.current = true;
-    };
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-        // console.log("payload= ", form);
-        // console.log("options= ", selected);
-        checkForEmptyFields();
-        if (canSubmit.current) {
-            const data = {
-                ...form,
-                productType: selected,
-            };
-            console.log("payload= ", data);
-            const response = await updatePost(data);
-            if (response.error) {
-                setError(response.error);
-                console.log("errors= ", response.error);
-            } else {
-                setSuccess("Post Saved");
-            }
-        } else {
-            checkForEmptyFields();
-        }
+  useEffect(() => {
+    setPost(state);
+  }, []);
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    adType: "",
+    price: "",
+    contactInfo: "",
+    password: "",
+  });
+  const canSubmit = useRef(false);
+  const handleChange = (e) => {
+    if (values.current.productType !== e.target.value) {
+      setForm({
+        ...form,
+        [e.target.id]: e.target.value,
+      });
+    } else {
+      setForm({
+        ...form,
+      });
     }
-    return (
+    console.log(form);
+  };
+
+  const checkForEmptyPassword = () => {
+    if (form.password === "") {
+      canSubmit.current = false;
+      setError("Password Cannot Be Empty");
+    } else {
+      canSubmit.current = true;
+    }
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    checkForEmptyPassword();
+    if (canSubmit.current) {
+      setError("");
+      setSuccess("");
+      const dat = {
+        ...form,
+        productType: selected,
+      };
+      const data = {
+        ...dat,
+        postId: values.current.id,
+      };
+      console.log("data= ", data);
+      const fieldToChange = {
+        title: false,
+        description: false,
+        adType: false,
+        price: false,
+        contactInfo: false,
+        productType: false,
+      };
+      if (data.title.length > 0) {
+        fieldToChange.title = true;
+      }
+      if (data.description.length > 0) {
+        fieldToChange.description = true;
+      }
+      if (data.adType.length > 0) {
+        fieldToChange.adType = true;
+      }
+      if (data.price.length > 0) {
+        fieldToChange.price = true;
+      }
+      if (data.contactInfo.length > 0) {
+        fieldToChange.contactInfo = true;
+      }
+      if (
+        data.productType.toLowerCase() !==
+        values.current.productType.toLowerCase()
+      ) {
+        fieldToChange.productType = true;
+      }
+      console.log("fieldstochange= ", fieldToChange);
+      const payload = {
+        data: data,
+        fieldToChange: fieldToChange,
+      };
+      console.log("updatepost payload= ", payload);
+      const response = await updatePost(payload);
+      if (response.error) {
+        setError(response.error);
+        console.log("errors= ", response.error);
+      } else {
+        setSuccess("Post Saved");
+      }
+    } else {
+      checkForEmptyPassword();
+    }
+  }
+  return (
+    <>
+      <NavBar />
+      {error ? <ErrorAlert props={error} /> : null}
+      {success ? <SuccessAlert props={success} /> : null}
+      <div className="text-center">
+        <h2 className="text-white">Update Post</h2>
+      </div>
+      {loading ? (
+        <Loading />
+      ) : (
         <>
-            <NavBar />
-            {error ? <ErrorAlert props={error} /> : null}
-            {success ? <SuccessAlert props={success} /> : null}
-            <div className="text-center">
-                <h2 className="text-white">Update Post</h2>
+          <div className="d-flex justify-content-center align-items-center flex-column">
+            {/* Ad Title */}
+            <div className="title-group w-75 mb-5">
+              <label className="text-white">
+                Changing Ad Title From <i> {values.current.title}</i>:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                value={form.title}
+                onChange={handleChange}
+                required
+                placeholder={values.current.title}
+              />
             </div>
-            <div className="d-flex justify-content-center align-items-center flex-column">
-                {/* Ad Title */}
-                <div className="title-group w-75 mb-5">
-                    <label className="text-white">Ad Title:</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="title"
-                        value={form.title}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                {/* Product Description */}
-                <div className="title-group w-75 mb-3">
-                    <label className="text-white">Product Description:</label>
-                    <textarea
-                        className="form-control"
-                        rows="6"
-                        id="description"
-                        value={form.description}
-                        onChange={handleChange}
-                        placeholder={values.desc}
-                    />
-                </div>
-                {/* Ad Type */}
-                <div className="title-group w-75 mb-3">
-                    <label className="text-white">Ad Type:</label>
-                    <div className="radio">
-                        <label className="text-white">
-                            <input
-                                id="adType"
-                                type="radio"
-                                value="sell"
-                                onChange={handleChange}
-                                name="optradio"
-                            />{" "}
-                            I'm offering{" "}
-                            <span className="text-secondary">
-                - You are offering an item for sale
-              </span>
-                        </label>
-                    </div>
-                    <div className="radio">
-                        <label className="text-white">
-                            <input
-                                id="adType"
-                                type="radio"
-                                value="buy"
-                                onChange={handleChange}
-                                name="optradio"
-                            />{" "}
-                            I want to find{" "}
-                            <span className="text-secondary">- You want to buy an item</span>
-                        </label>
-                    </div>
-                </div>
-                {/* Product Type */}
-                <div className="title-group w-75 mb-3">
-                    <label className="text-white">Product Type:</label>
-                    <div className="d-flex align-items-center text-white">
-                        <select
-                            className="form-select"
-                            value={selected}
-                            onChange={(e) => setSelected(e.target.value)}
-                        >
-                            {options.map((value) => (
-                                <option value={value} key={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
+            {/* Product Description */}
+            <div className="title-group w-75 mb-3">
+              <label className="text-white">
+                Changing Product Description From <i> {values.current.desc}</i>
+              </label>
+              <textarea
+                className="form-control"
+                rows="6"
+                id="description"
+                value={form.description}
+                onChange={handleChange}
+                placeholder={values.current.desc}
+              />
+            </div>
+            {/* Ad Type */}
+            <div className="title-group w-75 mb-3">
+              <label className="text-white">
+                {" "}
+                Changing Ad Type From <i> {values.current.adType}</i>
+              </label>
 
-                        {/* <select className="form-select" onChange={handleChange}>
-              <option value={form.productType} className="text-white">
-                Textbook
-              </option>
-              <option value={form.productType} className="text-white">
-                Clothing
-              </option>
-              <option value={form.productType} className="text-white">
-                Electronics
-              </option>
-              <option value={form.productType} className="text-white">
-                Furniture
-              </option>
-            </select> */}
-                    </div>
-                </div>
-                {/* Price */}
-                <div className="title-group w-75 mb-3">
-                    <label className="text-white">Price:</label>
-                    <div className="d-flex align-items-center text-white">
-                        <a>$</a>
-                        <input
-                            type="number"
-                            className="form-control priceinput"
-                            id="price"
-                            min="0"
-                            value={form.price}
-                            onChange={handleChange}
-                        />
-                    </div>
-                </div>
-                {/* Phone number */}
-                <div className="title-group w-75 mb-5">
-                    <label className="text-white">Phone number (optional):</label>
-                    <input
-                        type="tel"
-                        className="form-control phoneinput"
-                        id="contact"
-                        min="0"
-                        value={form.contact}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="title-group w-75 mb-3 password">
-                    <label className="text-white password">Password:</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="password"
-                        value={form.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+              <div className="radio">
+                <label className="text-white">
+                  <input
+                    id="adType"
+                    type="radio"
+                    value="sell"
+                    onChange={handleChange}
+                    name="optradio"
+                    check={
+                      values.current.adType.toLowerCase() === "sell" ? 1 : 0
+                    }
+                  />{" "}
+                  I'm offering{" "}
+                  <span className="text-secondary">
+                    - You are offering an item for sale
+                  </span>
+                </label>
+              </div>
+              <div className="radio">
+                <label className="text-white">
+                  <input
+                    id="adType"
+                    type="radio"
+                    value="buy"
+                    onChange={handleChange}
+                    name="optradio"
+                    check={
+                      values.current.adType.toLowerCase() === "buy" ? 1 : 0
+                    }
+                  />{" "}
+                  I want to find{" "}
+                  <span className="text-secondary">
+                    - You want to buy an item
+                  </span>
+                </label>
+              </div>
             </div>
-            <div className="text-center mb-3">
-                <Button onClick={handleSubmit} variant="warning">
-                    Update Post
-                </Button>
+            {/* Product Type */}
+            <div className="title-group w-75 mb-3">
+              <label className="text-white">
+                {" "}
+                Changing Product Type From <i> {values.current.productType}</i>
+              </label>
+              <div className="d-flex align-items-center text-white">
+                <select
+                  className="form-select"
+                  value={selected}
+                  onChange={(e) => setSelected(e.target.value)}
+                >
+                  {options.map((value) => (
+                    <option value={value} key={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+            {/* Price */}
+            <div className="title-group w-75 mb-3">
+              <label className="text-white">
+                Changing Price From<i> &#x24; {values.current.price}</i>
+              </label>
+              <div className="d-flex align-items-center text-white">
+                <a>&#x24;</a>
+                <input
+                  type="number"
+                  className="form-control priceinput"
+                  id="price"
+                  min="0"
+                  value={form.price}
+                  onChange={handleChange}
+                  placeholder={values.current.price}
+                />
+              </div>
+            </div>
+            {/* Phone number */}
+            <div className="title-group w-75 mb-5">
+              <label className="text-white">
+                Changing Contact Info From
+                <i> {values.current.contact}</i>
+              </label>
+              <input
+                type="tel"
+                className="form-control phoneinput"
+                id="contactInfo"
+                min="0"
+                value={form.contactInfo}
+                onChange={handleChange}
+                placeholder={values.current.contact}
+              />
+            </div>
+            <div className="title-group w-75 mb-3 password">
+              <label className="text-white password">Password:</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="text-center mb-3">
+            <Button onClick={handleSubmit} variant="warning">
+              Update Post
+            </Button>
+          </div>
         </>
-    );
+      )}
+    </>
+  );
 }
 
 export default UpdatePost;
