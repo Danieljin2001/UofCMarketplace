@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 function HeaderAndFooterExample({ props }) {
   const auth = isAuth();
   const navigate = useNavigate();
-  
+
   function formatDate(s) {
-    let date = (""+s).split("T");
-    date = date[0].replace(/\D/g,"/");
+    let date = ("" + s).split("T");
+    date = date[0].replace(/\D/g, "/");
     return date;
-    }
+  }
 
   async function handleMessage() {
     if (props.ownerID) {
@@ -31,32 +31,35 @@ function HeaderAndFooterExample({ props }) {
     }
   }
   return (
-    <>  
-    <NavBar/>
-    <div className="d-flex justify-content-center flex-row">
-      <div id = "container-pd">
-        <div id = "inner-container-pd" class="pd">
-          <div id="type-pd" class="pd">
-            {props.adType?.toUpperCase()}ING
-          </div>
-          <div id = "title-pd" class="pd">
-           {props.title}
-          </div>
-          <div id = "price-pd" class="pd">
-            ${props.price}
-          </div>
-          <div id = "desc-title-pd" class="pd">
-            Description
-          </div>
-          <div id = "desc-pd" class="pd">
-          {props.desc}
-          </div>
-          <div id="contact-container-pd" class ="pd">
-            {auth ? (
+    <>
+      <NavBar />
+      <div className="d-flex justify-content-center flex-row text-center">
+        <div id="container-pd">
+          <div id="inner-container-pd" class="pd">
+            <div id="type-pd" class="pd">
+              {props.adType?.toUpperCase()}ING
+            </div>
+            <div id="title-pd" class="pd">
+              {props.title}
+            </div>
+            <div id="price-pd" class="pd">
+              ${props.price}
+            </div>
+            <div id="desc-title-pd" class="pd">
+              Description
+            </div>
+            <div id="desc-pd" class="pd">
+              {props.desc}
+            </div>
+            <div id="contact-container-pd" class="pd">
+              {auth ? (
                 <>
                   <br />
                   {props.contactInfo ? (
-                    <><span id="contact-pd">Contact: </span>{props.contactInfo} </>
+                    <>
+                      <span id="contact-pd">Contact: </span>
+                      {props.contactInfo}{" "}
+                    </>
                   ) : null}
                 </>
               ) : (
@@ -64,39 +67,38 @@ function HeaderAndFooterExample({ props }) {
                   Please <a href="/login"> sign in</a> to view contact info
                 </>
               )}
-          </div>
-          
-          
-          <div id="message-btn" class="pd">
-              <Button onClick={handleMessage} variant="warning">Message</Button>
-          </div>
+            </div>
 
-            <div id = "date-pd" class="pd">
+            <div id="message-btn" class="pd">
+              <Button onClick={handleMessage} variant="warning">
+                Message
+              </Button>
+            </div>
+
+            <div id="date-pd" class="pd">
               Post date: {formatDate(props.createdAt)}
             </div>
-            
+          </div>
         </div>
-        
       </div>
-      
-    </div>
-    <div className="d-flex justify-content-center" style={{marginBottom: "2rem"}}>
-    {props.adType.toUpperCase() === "BUY" ? (
-                <Link to="/buy" style={{background: "transparent"}}>
-                  {" "}
-                  <Button variant="light">Close</Button>
-                </Link>
-              ) : (
-                <Link to="/sell" style={{background: "transparent"}}>
-                  {" "}
-                  <Button variant="light">Close</Button>
-                </Link>
-              )}
-    </div>
-    
-    
+      <div
+        className="d-flex justify-content-center"
+        style={{ marginBottom: "2rem" }}
+      >
+        {props.adType.toUpperCase() === "BUY" ? (
+          <Link to="/buy" style={{ background: "transparent" }}>
+            {" "}
+            <Button variant="light">Close</Button>
+          </Link>
+        ) : (
+          <Link to="/sell" style={{ background: "transparent" }}>
+            {" "}
+            <Button variant="light">Close</Button>
+          </Link>
+        )}
+      </div>
     </>
-  )
+  );
   // return (
   //   <>
   //     <NavBar />
