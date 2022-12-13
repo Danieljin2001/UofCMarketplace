@@ -177,17 +177,17 @@ const ChatBox = ({
             class="col"
             style={{
               textAlign: "center",
-              height: "10%",
+              height: "11%",
               backgroundColor: "white",
             }}
           >
             {/* name of person you're messaging */}
             <div
               id="name"
-              class="py-3"
+              class="py-2"
               style={{
                 color: "black",
-                backgroundColor: "gray",
+                backgroundColor: "white",
                 borderBottom: "1px solid black",
               }}
             >
@@ -198,8 +198,9 @@ const ChatBox = ({
             className="container d-flex flex-column justify-content-space-between "
             style={{
               backgroundColor: "white",
-              height: "83%",
+              height: "100%",
               overflow: "auto",
+              overflowX:"hidden"
             }}
           >
             {msgs.map((msg) => (
@@ -234,10 +235,10 @@ const ChatBox = ({
                           backgroundColor: "#147efb",
                         }
                       : {
-                          color: "white",
-                          backgroundColor: "grey",
-                        }
-                  }
+                        color: "white",
+                        backgroundColor: "grey",
+                      }
+                    }
                 >
                   {msg.text}
                 </div>
@@ -252,10 +253,10 @@ const ChatBox = ({
                           fontSize: "0.5rem",
                         }
                       : {
-                          color: "white",
-                          backgroundColor: "grey",
-                          fontSize: "0.5rem",
-                        }
+                        color: "white",
+                        backgroundColor: "grey",
+                        fontSize: "0.5rem",
+                      }
                   }
                 >
                   {" "}
@@ -267,29 +268,25 @@ const ChatBox = ({
               <TypingBubble innerRef={scroll} userEmail={friendData.email} />
             )}
           </div>
+            <InputGroup className="mb-3" style={{backgroundColor: "white"}}>
+              <Form.Control
+                type="text"
+                value={newMsg}
+                onChange={handleChange}
+                placeholder="Message..."
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    handleKey();
+                  }
+                }}
+              />
+              <div style={{background:"white"}}>
+                <Button onClick={handleSend} variant="primary">
+                  Send
+                </Button>
+              </div>
+            </InputGroup>
 
-          <InputGroup
-            className="mb-3"
-            style={{ backgroundColor: "white", height: "7.1%" }}
-          >
-            <Form.Control
-              type="text"
-              value={newMsg}
-              onChange={handleChange}
-              placeholder="Message..."
-              onKeyPress={(event) => {
-                if (event.key === "Enter") {
-                  handleKey();
-                }
-              }}
-            />
-
-            <div>
-              <Button onClick={handleSend} variant="outline-secondary">
-                Send
-              </Button>
-            </div>
-          </InputGroup>
         </>
       )}
     </div>

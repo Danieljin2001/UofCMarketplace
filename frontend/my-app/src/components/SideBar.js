@@ -26,11 +26,11 @@ const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
   }, [friendData]);
 
   return (
-    <div className="container d-flex flex-row justify-content-space-between text-center">
+    <div className="d-flex flex-row justify-content-space-between text-center">
       {loading ? (
         <Loading />
       ) : (
-        <div className="">
+        <div className="my-2">
           {online === true ? (
             <svg height="100" width="100">
               <circle
@@ -44,9 +44,9 @@ const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
               Sorry, your browser does not support inline SVG.
             </svg>
           ) : (
-            <svg height="100" width="100">
+            <svg height="100" width="50">
               <circle
-                cx="50"
+                cx="30"
                 cy="50"
                 r="0.5rem"
                 stroke="black"
@@ -56,10 +56,10 @@ const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
               Sorry, your browser does not support inline SVG.
             </svg>
           )}
-          <span style={{ color: online ? "#51e200" : "" }}>
+          <span style={{ color: online ? "#51e200" : ""}}>
             {online ? "Online" : "Offline"}
           </span>
-          <CgProfile /> <span>{friendData.email}</span>
+          <CgProfile /> <span style={{fontSize:"14px"}}>{friendData.email}</span>
           <span>
             {typing && currentChat._id === data._id && (
               <TypingBubble userEmail={friendData.email} />
