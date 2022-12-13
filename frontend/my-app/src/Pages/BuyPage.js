@@ -39,44 +39,51 @@ function BuyPage() {
     <>
       <NavBar />
       <div id="background">
-      <h1 className="text-center" style={{fontSize:"3rem", margin:"0"}}>Buy</h1>
+        <h1 className="text-center" style={{ fontSize: "3rem", margin: "0" }}>
+          Buy
+        </h1>
         <div className="d-flex justify-content-center">
-        <form
-          id="form-buypage"
-        >
-          <div className="flex-row ">
-            <div>
-              <h6>Filter by category</h6>
-              <div className="d-flex flex-row">
-                <select
-                  style={{ width: "9rem" }}
-                  className="form-select"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {categories.map((value) => (
-                    <option value={value} key={value}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
-                <div
-                  style={{ width: "100%" }} 
-                  className="d-flex justify-content-between"
-                >
-                  <Button onClick={handleSubmit} className="mx-2" variant="light">
-                    Filter
-                  </Button>
-                  <PostProduct></PostProduct>
+          <form id="form-buypage">
+            <div className="flex-row ">
+              <div>
+                <h6>Filter by category</h6>
+                <div className="d-flex flex-row">
+                  <select
+                    style={{ width: "9rem" }}
+                    className="form-select"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    {categories.map((value) => (
+                      <option value={value} key={value}>
+                        {value}
+                      </option>
+                    ))}
+                  </select>
+                  <div
+                    style={{ width: "100%" }}
+                    className="d-flex justify-content-between"
+                  >
+                    <Button
+                      onClick={handleSubmit}
+                      className="mx-2"
+                      variant="light"
+                    >
+                      Filter
+                    </Button>
+                    <PostProduct></PostProduct>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
         </div>
-        {posts?.map((post) => (
-          <Product key={post._id} props={post} />
-        ))}
+
+        {posts?.length > 0 ? (
+          posts.map((post) => <Product key={post._id} props={post} />)
+        ) : (
+          <h2 className="text-center">No Buy Posts Available</h2>
+        )}
       </div>
     </>
   );
