@@ -16,8 +16,8 @@ function AllPost() {
   return (
     <>
       <NavBar />
-      <h1 style={{ textAlign: "center", fontSize:"5rem" }}>All Posts</h1>
-      <div style={{ margin: "15px" }}>
+      <h1 style={{ textAlign: "center", fontSize:"3rem" }}>All Posts</h1>
+      <div>
         {posts?.map((post) => (
           <AdminPosts key={post._id} props={post} />
         ))}

@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import ConfirmAdminStudentDelete from "./ConfirmAdminStudentDelete";
 import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
+import './AdminStudents.css';
 
 function AdminStudents({ props }) {
   const [error, setError] = useState(null);
@@ -12,61 +13,50 @@ function AdminStudents({ props }) {
     <>
       {error ? <ErrorAlert props={error} /> : null}
       {success ? <SuccessAlert props={success} /> : null}
-      <Card
-        style={{
-          marginTop: "0.5%",
-          marginRight: "8%",
-          marginLeft: "8%",
-          backgroundColor: "PaleGoldenRod",
-        }}
-      >
-        <Card.Body
+      <div id="admin-students">
+        <Card
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            backgroundColor: "PaleGoldenRod",
+            backgroundColor: 'PaleGoldenRod'
           }}
         >
-          <div
+          <Card.Body
             style={{
               display: "flex",
-              fontSize: "1rem",
-              width: "60%",
-              justifyContent: "space-around",
-              backgroundColor: "PaleGoldenRod",
+              justifyContent: "space-between",
+              backgroundColor: "transparent",
+              borderRadius: "0.5rem"
             }}
           >
-            <Card.Text
-              style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+            <div id="card-text">
+              <Card.Text
+                style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+              >
+                {props._id}
+              </Card.Text>
+              <Card.Text
+                style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
+              >
+                {props.email}
+              </Card.Text>
+            </div>
+            <div
+              id="inputGroup"
+              style={{
+
+              }}
             >
-              {props._id}
-            </Card.Text>
-            <Card.Text
-              style={{ backgroundColor: "PaleGoldenRod", color: "black" }}
-            >
-              {props.email}
-            </Card.Text>
-          </div>
-          <div
-            id="inputGroup"
-            style={{
-              display: "flex",
-              width: "30%",
-              justifyContent: "space-around",
-              backgroundColor: "PaleGoldenRod",
-            }}
-          >
-            <ConfirmAdminStudentDelete
-              props={props}
-              setError={setError}
-              setSuccess={setSuccess}
-            />
-            {/* <Button variant="danger" style={{ width: "15rem" }}>
-            Delete
-          </Button> */}
-          </div>
-        </Card.Body>
-      </Card>
+              <ConfirmAdminStudentDelete
+                props={props}
+                setError={setError}
+                setSuccess={setSuccess}
+              />
+              {/* <Button variant="danger" style={{ width: "15rem" }}>
+              Delete
+            </Button> */}
+            </div>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   );
 }

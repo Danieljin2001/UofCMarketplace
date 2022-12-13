@@ -18,8 +18,7 @@ function AllStudent() {
   return (
     <>
       <NavBar />
-      <h1 style={{ textAlign: "center", fontSize:"5rem" }}>All Students</h1>
-      <AllStudentHeader/>
+      <h1 style={{ textAlign: "center", fontSize:"3rem" }}>All Students</h1>
       <div>
         {students?.map((student) => (
           <AdminStudents key={student._id} props={student} />

@@ -1,0 +1,53 @@
+#my-products-card {
+    margin-top: 0.5%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+    background: transparent;
+    border-color: black;
+}
+
+#card-text {
+    font-size: 0.5rem;
+    background-color: transparent;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    margin:auto;
+}
+
+#inputGroup {
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+    height: 3rem;
+    margin: auto;
+    flex-direction: column;
+}
+
+@media only screen and (min-width:800px) {
+    #my-products-card {
+        margin-left: 8%;
+        margin-right: 8%;
+        background-color: transparent;
+    }
+
+    #card-text{
+        font-size: 0.7rem;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: transparent;
+        margin: auto;
+    }
+
+    #inputGroup {
+        display: flex;
+        width: 30%;
+        justify-content: space-around;
+        background-color: transparent;
+        height: 4rem;
+        margin: auto;
+        flex-direction: row;
+    }
+}
