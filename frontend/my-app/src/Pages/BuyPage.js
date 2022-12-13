@@ -40,31 +40,41 @@ function BuyPage() {
       <NavBar />
       <div id="background">
       <h1 className="text-center" style={{fontSize:"5rem", margin:"0"}}>Buy</h1>
-        <PostProduct></PostProduct>
+        <div className="d-flex justify-content-center">
         <form
-          style={{ width: "30%" }}
-          className="d-flex justify-content-center"
+          style={{ width: "80%" }}
+          className=""
         >
           <div className="flex-row ">
             <div>
-              <h5>Filter By Category</h5>
-              <select
-                className="form-select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                {categories.map((value) => (
-                  <option value={value} key={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
+              <h6>Filter By Category</h6>
+              <div className="d-flex flex-row">
+                <select
+                  style={{ width: "9rem" }}
+                  className="form-select"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {categories.map((value) => (
+                    <option value={value} key={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+                <div
+                  style={{ width: "100%" }} 
+                  className="d-flex justify-content-between"
+                >
+                  <Button onClick={handleSubmit} className="mx-2" variant="light">
+                    Filter
+                  </Button>
+                  <PostProduct></PostProduct>
+                </div>
+              </div>
             </div>
-            <Button onClick={handleSubmit} className="mt-2">
-              Filter
-            </Button>
           </div>
         </form>
+        </div>
         {posts?.map((post) => (
           <Product key={post._id} props={post} />
         ))}
