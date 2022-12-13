@@ -1,7 +1,31 @@
 import argon2 from "argon2";
 import Admin from "../models/admin";
 import jwt from "jsonwebtoken";
+import Ban from "../models/ban";
 const { ObjectId } = require("mongodb");
+
+export const unBanStudent = async (req, res) => {
+  try {
+    const { email } = req.body;
+    await Ban.deleteOne({
+      email: email,
+    });
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getBannedStudents = async (req, res) => {
+  try {
+    const banned = await Ban.find();
+
+    res.status(200).json(banned);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 export const getAdminObject = async (req, res) => {
   try {

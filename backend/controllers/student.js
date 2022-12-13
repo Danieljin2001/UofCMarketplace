@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { getAdmin } from "./admin";
 import { deleteMyChats } from "./chat";
 import { deleteMyPosts } from "./post";
+import Ban from "../models/ban";
 const { ObjectId } = require("mongodb");
 
 export const getUser = async (req, res) => {
@@ -40,6 +41,25 @@ export const changeStudentPassword = async (req, res) => {
       { password: newPWHash }
     );
     res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const banStudent = async (req, res) => {
+  try {
+    const { stuID } = req.body;
+    const addy = await getAdmin(req, res);
+    if (!addy) return res.json({ error: "Access Denied" });
+    // add email to ban model then delete student
+    const stu = await Student.findById(ObjectId(stuID));
+    if (!stu) return res.json({ error: "No Student Found" });
+    const newBan = new Ban({
+      email: stu.email,
+    });
+    await newBan.save();
+    await deleteStudent(req, res);
+    // res.status(200).json({success: true});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -103,6 +123,10 @@ export const studentSignup = async (req, res) => {
   try {
     const { email, password } = req.body;
     const hashed = await argon2.hash(password);
+    const isBanned = await Ban.findOne({
+      email: email,
+    });
+    if (isBanned) return res.json({ error: "Student Banned" });
     const emailCheck = email.substring(email.lastIndexOf("@") + 1);
     if (emailCheck !== "ucalgary.ca")
       return res.json({ error: "Email must be @ucalgary.ca " });
