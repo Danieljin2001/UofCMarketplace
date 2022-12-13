@@ -6,8 +6,9 @@ import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
 import "./AdminStudents.css";
 import ConfirmAdminBan from "./ConfirmAdminBan";
+import ConfirmAdminUnban from "./ConfirmAdminUnban";
 
-function AdminStudents({ props }) {
+function AdminBannedStudents({ props }) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   return (
@@ -41,18 +42,14 @@ function AdminStudents({ props }) {
               </Card.Text>
             </div>
             <div id="inputGroup" style={{}}>
-              <ConfirmAdminStudentDelete
+              <ConfirmAdminUnban
                 props={props}
                 setError={setError}
                 setSuccess={setSuccess}
               />
-            </div>
-            <div id="inputGroup" style={{}}>
-              <ConfirmAdminBan
-                props={props}
-                setError={setError}
-                setSuccess={setSuccess}
-              />
+              {/* <Button variant="danger" style={{ width: "15rem" }}>
+              Delete
+            </Button> */}
             </div>
           </Card.Body>
         </Card>
@@ -61,4 +58,4 @@ function AdminStudents({ props }) {
   );
 }
 
-export default AdminStudents;
+export default AdminBannedStudents;

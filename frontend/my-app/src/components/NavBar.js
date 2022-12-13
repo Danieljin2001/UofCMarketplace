@@ -74,6 +74,8 @@ function NavBar() {
                     <>
                       <Nav.Link href="/students">All Students</Nav.Link>
                       <Nav.Link href="/posts">All Posts</Nav.Link>
+                      <Nav.Link href="/banned">Banned Students</Nav.Link>
+
                       {loading ? (
                         <Loading />
                       ) : (

@@ -27,6 +27,8 @@ import AdminRoute from "./AdminRoute";
 import AllPost from "./Pages/AllPost";
 import AllStudent from "./Pages/AllStudent";
 import UpdatePost from "./Pages/UpdatePost";
+import AdminBannedStudents from "./components/AdminBannedStudents";
+import BlacklistedStudents from "./Pages/BlacklistedStudents";
 
 const App = () => {
   return (
@@ -60,6 +62,7 @@ const App = () => {
         <Route path="" element={<AdminRoute />}>
           <Route path="/students" element={<AllStudent />} />
           <Route path="/posts" element={<AllPost />} />
+          <Route path="/banned" element={<BlacklistedStudents />} />
         </Route>
 
         {/* <Route path="/" element={<Home />} /> */}

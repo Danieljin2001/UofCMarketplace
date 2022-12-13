@@ -2,6 +2,61 @@ import axios from "axios";
 import { getDecodedToken, getToken } from "./routeProtection";
 const API = "http://localhost:3001";
 
+export const unbanUser = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/admin/unban`, data, config);
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
+export const banUser = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/admin/ban`, data, config);
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
+export const getBannedUsers = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/admin/blacklisted`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
 export const createNewChatBetweenStudents = async (data) => {
   const config = {
     headers: {
@@ -336,9 +391,9 @@ export const updatePost = async (data) => {
   };
 
   const response = await axios.post(
-      `${API}/api/student/updatepost`,
-      data,
-      config
+    `${API}/api/student/updatepost`,
+    data,
+    config
   );
   const result = response.data;
   if (result.success) {
@@ -356,11 +411,7 @@ export const deleteStudent = async (data) => {
     },
   };
 
-  const response = await axios.post(
-      `${API}/api/student/delete`,
-      data,
-      config
-  );
+  const response = await axios.post(`${API}/api/student/delete`, data, config);
   const result = response.data;
   if (result.success) {
     return true;
