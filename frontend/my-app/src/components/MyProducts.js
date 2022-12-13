@@ -5,10 +5,17 @@ import ConfirmDelete from "./ConfirmDelete";
 import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
 import './MyProducts.css'
+import { useNavigate } from "react-router-dom";
 
 function MyProducts({ props }) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
+
+  function update() {
+    navigate("/updatepost", { state: props });
+  }
+
   return (
     <>
       {error ? <ErrorAlert props={error} /> : null}
@@ -46,7 +53,7 @@ function MyProducts({ props }) {
 
               }}
             >
-              <Button variant="success" style={{ width: "7rem" }}>
+              <Button variant="success" style={{ width: "7rem" }} onClick={update}>
                 Update
               </Button>
               <ConfirmDelete
@@ -54,9 +61,6 @@ function MyProducts({ props }) {
                 setError={setError}
                 setSuccess={setSuccess}
               />
-              {/* <Button onClick={submit} variant="danger" style={{ width: "7rem" }}>
-              Delete
-            </Button> */}
             </div>
           </Card.Body>
         </Card>

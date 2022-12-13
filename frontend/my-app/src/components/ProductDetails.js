@@ -1,17 +1,34 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { isAuth } from "../routeProtection";
+import { createNewChatBetweenStudents } from "../api";
+import { getDecodedToken, isAuth } from "../routeProtection";
 import NavBar from "./NavBar";
 import "./ProductDetails.css";
+import { useNavigate } from "react-router-dom";
 
 function HeaderAndFooterExample({ props }) {
   const auth = isAuth();
-
+  const navigate = useNavigate();
+  
   function formatDate(s) {
     let date = (""+s).split("T");
     date = date[0].replace(/\D/g,"/");
     return date;
+    }
+
+  async function handleMessage() {
+    if (props.ownerID) {
+      // create a chat and then redirect to the chat page
+      const result = await createNewChatBetweenStudents({
+        senderId: getDecodedToken().id,
+        receiverId: props.ownerID,
+      });
+      if (result) {
+        // redirect to chat page since the chat is created
+        navigate("/chat");
+      }
+    }
   }
   return (
     <>  
@@ -50,9 +67,8 @@ function HeaderAndFooterExample({ props }) {
           </div>
           
           
-
           <div id="message-btn" class="pd">
-              <Button variant="warning">Message</Button>
+              <Button onClick={handleMessage} variant="warning">Message</Button>
           </div>
 
             <div id = "date-pd" class="pd">

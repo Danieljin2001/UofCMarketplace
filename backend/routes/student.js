@@ -1,8 +1,16 @@
-import { createNewPost, deleteMyPost, getMyPosts } from "../controllers/post";
+import {
+  createNewPost,
+  deleteMyPost,
+  getMyPosts,
+  updatePost,
+} from "../controllers/post";
 import {
   changeStudentPassword,
+  getStudentObject,
+  getUser,
   studentLogin,
   studentSignup,
+  deleteStudent,
 } from "../controllers/student";
 import { verifyToken } from "../utils/verifyToken";
 
@@ -15,4 +23,7 @@ studentRouter.post("/createpost", verifyToken, createNewPost);
 studentRouter.post("/posts", verifyToken, getMyPosts);
 studentRouter.post("/deletepost", verifyToken, deleteMyPost);
 studentRouter.post("/updatepw", verifyToken, changeStudentPassword);
-// studentRouter.post("/updatepost", verifyToken, updatePost);
+studentRouter.post("/updatepost", verifyToken, updatePost);
+studentRouter.post("/myself", verifyToken, getStudentObject);
+studentRouter.post("/friend", verifyToken, getUser);
+studentRouter.post("/delete", verifyToken, deleteStudent)

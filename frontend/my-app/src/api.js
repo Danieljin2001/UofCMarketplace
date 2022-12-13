@@ -1,6 +1,129 @@
 import axios from "axios";
-import { getToken } from "./routeProtection";
+import { getDecodedToken, getToken } from "./routeProtection";
 const API = "http://localhost:3001";
+
+export const createNewChatBetweenStudents = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/chat/`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
+export const sendMsgToStudent = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/msg/add`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
+export const getStudentMsgs = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/msg/`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
+export const getStudentFriend = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/student/friend`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
+export const getStudentChats = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${API}/api/chat/${getDecodedToken().id}`,
+    data,
+    config
+  );
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
+export const getAdmin = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/admin/myself`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
+export const getStudent = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/student/myself`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
 
 export const updatePassword = async (data) => {
   const config = {
@@ -203,4 +326,45 @@ export const addyLogin = async (data) => {
   }
 
   return result;
+};
+export const updatePost = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+      `${API}/api/student/updatepost`,
+      data,
+      config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
+};
+
+export const deleteStudent = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+      `${API}/api/student/delete`,
+      data,
+      config
+  );
+  const result = response.data;
+  if (result.success) {
+    return true;
+  } else {
+    return result;
+  }
 };

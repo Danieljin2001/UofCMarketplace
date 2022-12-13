@@ -2,7 +2,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function AllStudentHeader({first, second, third}) {
+function AllStudentHeader({}) {
 
   return (
     <>
@@ -11,6 +11,7 @@ function AllStudentHeader({first, second, third}) {
           marginTop: "0.5%",
           marginRight: "8%",
           marginLeft: "8%",
+          border:"none"
         }}
         >
         <Card.Body
