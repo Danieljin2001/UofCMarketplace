@@ -27,13 +27,16 @@ export const changeStudentPassword = async (req, res) => {
     const stu = await getStudent(req, res);
     if (!stu) return res.json({ error: "Access Denied" });
     const { password, newPassword, confirmPassword } = req.body;
-    const comparePW = await argon2.verify(user.password, password);
+    const comparePW = await argon2.verify(stu.password, password);
     if (!comparePW) return res.json({ error: "Invalid credentials. " });
     if (newPassword !== confirmPassword)
       return res.json({ error: "Passwords Do Not Match" });
 
     const newPWHash = await argon2.hash(newPassword);
-    await stu.updateOne({ _id: ObjectId(stu._id) }, { password: newPWHash });
+    await Student.updateOne(
+      { _id: ObjectId(stu._id) },
+      { password: newPWHash }
+    );
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ error: error.message });
