@@ -46,7 +46,7 @@ function SellPage() {
         >
           <div className="flex-row ">
             <div>
-              <h6>Filter By Category</h6>
+              <h6>Filter by category</h6>
               <div className="d-flex flex-row">
                 <select
                   style={{ width: "9rem" }}
