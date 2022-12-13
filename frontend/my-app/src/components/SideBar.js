@@ -4,7 +4,6 @@ import Loading from "./Loading";
 import SideChat from "./SideChat";
 import { CgProfile } from "react-icons/cg";
 import TypingBubble from "./TypingBubble";
-import './Sidebar.css'
 
 const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
   const [friendData, setFriendData] = useState(null);
@@ -31,21 +30,21 @@ const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="my-2 mx-2" id="side">
+        <div className="my-2">
           {online === true ? (
-           <svg height="100" width="20">
-           <circle
-             cx="30"
-             cy="50"
-             r="0.5rem"
-             stroke="black"
-             stroke-width="3"
-             fill="gray"
-           />
+            <svg height="100" width="100">
+              <circle
+                cx="50"
+                cy="50"
+                r="0.5rem"
+                stroke="black"
+                stroke-width="3"
+                fill="green"
+              />
               Sorry, your browser does not support inline SVG.
             </svg>
           ) : (
-            <svg height="100" width="0">
+            <svg height="100" width="50">
               <circle
                 cx="30"
                 cy="50"
@@ -57,7 +56,7 @@ const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
               Sorry, your browser does not support inline SVG.
             </svg>
           )}
-          <span id="status" style={{ color: online ? "#51e200" : ""}}>
+          <span style={{ color: online ? "#51e200" : ""}}>
             {online ? "Online" : "Offline"}
           </span>
           <CgProfile /> <span style={{fontSize:"14px"}}>{friendData.email}</span>
