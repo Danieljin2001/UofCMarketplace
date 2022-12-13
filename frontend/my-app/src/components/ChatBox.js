@@ -168,7 +168,7 @@ const ChatBox = ({
   }, [chat]);
 
   return (
-    <div style={{ flex: "2" }}>
+    <div style={{ flex: "3" }}>
       {isSelected === false ? (
         <Loading props={txt} />
       ) : (
@@ -177,7 +177,7 @@ const ChatBox = ({
             class="col"
             style={{
               textAlign: "center",
-              height: "11%",
+              height: "12%",
               backgroundColor: "white",
             }}
           >
@@ -198,7 +198,7 @@ const ChatBox = ({
             className="container d-flex flex-column justify-content-space-between "
             style={{
               backgroundColor: "white",
-              height: "100%",
+              height: "82%",
               overflow: "auto",
               overflowX: "hidden",
             }}

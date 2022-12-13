@@ -30,21 +30,21 @@ const SideBar = ({ data, currentUser, online, typing, currentChat }) => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="my-2">
+        <div className="my-2 mx-2">
           {online === true ? (
-            <svg height="100" width="100">
-              <circle
-                cx="50"
-                cy="50"
-                r="0.5rem"
-                stroke="black"
-                stroke-width="3"
-                fill="green"
-              />
+           <svg height="100" width="20">
+           <circle
+             cx="30"
+             cy="50"
+             r="0.5rem"
+             stroke="black"
+             stroke-width="3"
+             fill="gray"
+           />
               Sorry, your browser does not support inline SVG.
             </svg>
           ) : (
-            <svg height="100" width="50">
+            <svg height="100" width="20">
               <circle
                 cx="30"
                 cy="50"

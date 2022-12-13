@@ -151,7 +151,7 @@ const Chat = () => {
                   <div
                     style={{
                       borderRight: "1px solid #5D3FD3",
-                      flex: "1",
+                      flex: "2",
                       fontSize: "1rem",
                     }}
                     key={chat._id}
