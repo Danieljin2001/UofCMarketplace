@@ -39,7 +39,7 @@ function SellPage() {
     <>
       <NavBar />
       <div id="background">
-        <h1 className="text-center" style={{fontSize:"5rem", margin:"0"}}>Sell</h1>
+        <h1 className="text-center" style={{fontSize:"3rem", margin:"0"}}>Sell</h1>
         <div className="d-flex justify-content-center">
         <form
           id="form-sellpage"
