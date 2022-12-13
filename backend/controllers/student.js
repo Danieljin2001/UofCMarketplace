@@ -50,11 +50,8 @@ export const deleteAdminStudent = async (req, res) => {
     const { stuID } = req.body;
     const addy = await getAdmin(req, res);
     if (!addy) return res.json({ error: "Access Denied" });
-    const myStudent = await Student.findById(ObjectId(stuID));
-    if (!myStudent) return res.json({ error: "No Student Found" });
 
-    await Student.deleteOne(ObjectId(stuID));
-    res.status(200).json({ success: true });
+    await deleteStudent(req, res);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
