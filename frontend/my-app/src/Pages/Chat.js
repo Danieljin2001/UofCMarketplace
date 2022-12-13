@@ -145,7 +145,7 @@ const Chat = () => {
           {loading === true ? (
             <Loading />
           ) : (
-            <div className="chat-list" style={{overflow:"auto"}}>
+            <div className="chat-list" style={{ overflow: "auto" }}>
               {chats.length ? (
                 chats.map((chat) => (
                   <div
@@ -174,7 +174,7 @@ const Chat = () => {
                 ))
               ) : (
                 <h2
-                  style={{ borderRight: "1px solid #5D3FD3"}}
+                  style={{ borderRight: "1px solid #5D3FD3" }}
                   className="text-white p-4"
                 >
                   You Have No Chats
@@ -182,7 +182,6 @@ const Chat = () => {
               )}
             </div>
           )}
-
           <ChatBox
             chat={currentChat}
             currentUser={user}

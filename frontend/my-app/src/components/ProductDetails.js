@@ -68,12 +68,13 @@ function HeaderAndFooterExample({ props }) {
                 </>
               )}
             </div>
-
-            <div id="message-btn" class="pd">
-              <Button onClick={handleMessage} variant="warning">
-                Message
-              </Button>
-            </div>
+            {auth ? (
+              <div id="message-btn" class="pd">
+                <Button onClick={handleMessage} variant="warning">
+                  Message
+                </Button>
+              </div>
+            ) : null}
 
             <div id="date-pd" class="pd">
               Post date: {formatDate(props.createdAt)}

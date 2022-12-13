@@ -200,7 +200,7 @@ const ChatBox = ({
               backgroundColor: "white",
               height: "100%",
               overflow: "auto",
-              overflowX:"hidden"
+              overflowX: "hidden",
             }}
           >
             {msgs.map((msg) => (
@@ -235,10 +235,10 @@ const ChatBox = ({
                           backgroundColor: "#147efb",
                         }
                       : {
-                        color: "white",
-                        backgroundColor: "grey",
-                      }
-                    }
+                          color: "white",
+                          backgroundColor: "grey",
+                        }
+                  }
                 >
                   {msg.text}
                 </div>
@@ -253,10 +253,10 @@ const ChatBox = ({
                           fontSize: "0.5rem",
                         }
                       : {
-                        color: "white",
-                        backgroundColor: "grey",
-                        fontSize: "0.5rem",
-                      }
+                          color: "white",
+                          backgroundColor: "grey",
+                          fontSize: "0.5rem",
+                        }
                   }
                 >
                   {" "}
@@ -268,25 +268,24 @@ const ChatBox = ({
               <TypingBubble innerRef={scroll} userEmail={friendData.email} />
             )}
           </div>
-            <InputGroup className="mb-3" style={{backgroundColor: "white"}}>
-              <Form.Control
-                type="text"
-                value={newMsg}
-                onChange={handleChange}
-                placeholder="Message..."
-                onKeyPress={(event) => {
-                  if (event.key === "Enter") {
-                    handleKey();
-                  }
-                }}
-              />
-              <div style={{background:"white"}}>
-                <Button onClick={handleSend} variant="primary">
-                  Send
-                </Button>
-              </div>
-            </InputGroup>
-
+          <InputGroup className="mb-3" style={{ backgroundColor: "white" }}>
+            <Form.Control
+              type="text"
+              value={newMsg}
+              onChange={handleChange}
+              placeholder="Message..."
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  handleKey();
+                }
+              }}
+            />
+            <div style={{ background: "white" }}>
+              <Button onClick={handleSend} variant="primary">
+                Send
+              </Button>
+            </div>
+          </InputGroup>
         </>
       )}
     </div>

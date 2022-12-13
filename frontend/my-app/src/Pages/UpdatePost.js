@@ -156,7 +156,8 @@ function UpdatePost() {
             {/* Ad Title */}
             <div className="title-group w-75 mb-5">
               <label className="text-white">
-                Changing Ad Title From <i> {values.current.title}</i>:
+                Changing Ad Title From&#x3a;
+                <br /> <i className="text-warning"> {values.current.title}</i>
               </label>
               <input
                 type="text"
@@ -171,7 +172,9 @@ function UpdatePost() {
             {/* Product Description */}
             <div className="title-group w-75 mb-3">
               <label className="text-white">
-                Changing Product Description From <i> {values.current.desc}</i>
+                Changing Product Description From&#x3a;
+                <br />
+                <i className="text-warning"> {values.current.desc}</i>
               </label>
               <textarea
                 className="form-control"
@@ -185,8 +188,12 @@ function UpdatePost() {
             {/* Ad Type */}
             <div className="title-group w-75 mb-3">
               <label className="text-white">
-                {" "}
-                Changing Ad Type From <i> {values.current.adType}</i>
+                Changing Ad Type From&#x3a;
+                <br />
+                <i className="text-warning">
+                  {" "}
+                  {values.current.adType.toUpperCase()}
+                </i>
               </label>
 
               <div className="radio">
@@ -230,7 +237,12 @@ function UpdatePost() {
             <div className="title-group w-75 mb-3">
               <label className="text-white">
                 {" "}
-                Changing Product Type From <i> {values.current.productType}</i>
+                Changing Product Type From&#x3a;
+                <br />
+                <i className="text-warning">
+                  {" "}
+                  {values.current.productType.toUpperCase()}
+                </i>
               </label>
               <div className="d-flex align-items-center text-white">
                 <select
@@ -249,7 +261,9 @@ function UpdatePost() {
             {/* Price */}
             <div className="title-group w-75 mb-3">
               <label className="text-white">
-                Changing Price From<i> &#x24; {values.current.price}</i>
+                Changing Price From&#x3a;
+                <br />
+                <i className="text-warning">&#x24; {values.current.price}</i>
               </label>
               <div className="d-flex align-items-center text-white">
                 <a>&#x24;</a>
@@ -267,8 +281,9 @@ function UpdatePost() {
             {/* Phone number */}
             <div className="title-group w-75 mb-5">
               <label className="text-white">
-                Changing Contact Info From
-                <i> {values.current.contact}</i>
+                Changing Contact Info From&#x3a;
+                <br />
+                <i className="text-warning"> {values.current.contact}</i>
               </label>
               <input
                 type="tel"
