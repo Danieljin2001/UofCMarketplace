@@ -135,3 +135,16 @@ export const studentLogin = async (req, res) => {
     res.status(500).json({ error: error });
   }
 };
+
+export const deleteStudent = async (req, res) => {
+  try {
+    const { stuID } = req.body;
+    const myStudent = await Student.findById(ObjectId(stuID));
+    if (!myStudent) return res.json({ error: "No Student Found" });
+
+    await Student.deleteOne(ObjectId(stuID));
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
