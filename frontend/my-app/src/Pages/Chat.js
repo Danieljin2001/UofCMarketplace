@@ -140,13 +140,12 @@ const Chat = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <h1>Chats</h1>
       <div className="container my-4">
         <div className="chat">
           {loading === true ? (
             <Loading />
           ) : (
-            <div className="chat-list">
+            <div className="chat-list" style={{overflow:"auto"}}>
               {chats.length ? (
                 chats.map((chat) => (
                   <div
@@ -175,7 +174,7 @@ const Chat = () => {
                 ))
               ) : (
                 <h2
-                  style={{ borderRight: "1px solid #5D3FD3" }}
+                  style={{ borderRight: "1px solid #5D3FD3"}}
                   className="text-white p-4"
                 >
                   You Have No Chats

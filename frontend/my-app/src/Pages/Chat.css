@@ -1,23 +1,21 @@
 .chat {
   border: 1px solid white;
   border-radius: 5px;
-  height: 70vh;
+  height: 60vh;
   display: flex;
-  overflow: hidden;
+  background-color: white;
 }
 
 .chat-header-click {
-  background-color: #808080;
+  background-color: #d6d6d6;
 }
 
 .chat-header-click:hover {
-  background-color: #00ff00;
+  background-color: #82d1ff;
   cursor: pointer;
 }
 
 .chat-header-click > hr {
-  border: solid;
-  height: 0.4rem;
   /* Set the hr color */
   color: #0000ff; /* old IE */
   background-color: #0000ff; /* Modern Browsers */
