@@ -1,4 +1,9 @@
-import { createNewPost, deleteMyPost, getMyPosts, updatePost } from "../controllers/post";
+import {
+  createNewPost,
+  deleteMyPost,
+  getMyPosts,
+  updatePost,
+} from "../controllers/post";
 import {
   changeStudentPassword,
   studentLogin,
