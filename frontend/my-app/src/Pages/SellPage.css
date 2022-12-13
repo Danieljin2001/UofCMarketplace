@@ -1,0 +1,10 @@
+#form-sellpage{
+    width: 90%
+}
+
+
+@media only screen and (min-width:800px) {
+    #form-sellpage {
+        width: 80% !important
+    }
+}

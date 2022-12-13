@@ -4,6 +4,7 @@ import PostProduct from "../components/PostProduct";
 import NavBar from "../components/NavBar";
 import { getAllPosts } from "../api";
 import Button from "react-bootstrap/Button";
+import "./BuyPage.css";
 
 const categories = ["All", "Electronics", "Furniture", "Textbook", "Clothing"];
 function BuyPage() {
@@ -42,8 +43,7 @@ function BuyPage() {
       <h1 className="text-center" style={{fontSize:"5rem", margin:"0"}}>Buy</h1>
         <div className="d-flex justify-content-center">
         <form
-          style={{ width: "80%" }}
-          className=""
+          id="form-buypage"
         >
           <div className="flex-row ">
             <div>
