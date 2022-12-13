@@ -24,7 +24,7 @@ function ConfirmAdminStudentDelete({ props, setError, setSuccess }) {
 
   return (
     <>
-      <Button style={{ width: "10rem" }} variant="danger" onClick={handleShow}>
+      <Button style={{ width: "7rem" }} variant="danger" onClick={handleShow}>
         Delete Student
       </Button>
 

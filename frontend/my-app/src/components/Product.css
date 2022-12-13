@@ -1,0 +1,57 @@
+
+
+#container-product{
+    width: 90%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: PaleGoldenRod;
+    border-radius: 5px;
+}
+
+#container-product:hover {
+    filter: brightness(85%)
+}
+
+#inside-container-product {
+    height: 6rem;
+    background: transparent;
+}
+
+#title-date-product {
+    background: transparent;
+    font-size: 15px;
+}
+
+#title-product {
+    background: transparent;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#date-product {
+    background: transparent;
+    color: black;
+}
+
+#price-product{
+    background: transparent;
+    color: green;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#desc-product{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0.5rem;
+    background: transparent;
+    color: rgb(117, 86, 8);
+}
+
+@media only screen and (min-width:800px) {
+    #container-product {
+        width: 80% !important
+    }
+}

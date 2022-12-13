@@ -1,0 +1,46 @@
+#adminPosts {
+    margin-top: 0.5%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+    background-color: transparent;
+}
+
+#textGroup {
+    margin: auto;
+    font-size: 0.5rem;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+#inputGroup {
+    background-color: transparent;
+    height: 2rem;
+    margin: auto;
+}
+
+@media only screen and (min-width:800px) {
+    #adminPosts {
+        margin-top: 0.5%;
+        margin-right: 8%;
+        margin-left: 8%;
+        background-color: transparent;
+    }
+
+    #textGroup {
+        display: flex;
+        font-size: 0.7rem;
+        justify-content: space-around;
+        background-color: transparent;
+        flex-direction: column;
+        margin: auto;
+        width: 60%;
+    }
+
+    #inputGroup {
+        display: flex;
+        justify-content: space-around;
+        background-color: transparent;
+        height: 4rem;
+        margin: auto;
+    }
+}

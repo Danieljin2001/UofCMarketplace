@@ -1,0 +1,9 @@
+#button:after {
+    content: "Post";
+}
+
+@media only screen and (min-width:480px) {
+    #button:after {
+        content: "Post a Product";
+    }
+}
