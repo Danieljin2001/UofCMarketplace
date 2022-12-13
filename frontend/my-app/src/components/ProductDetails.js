@@ -64,7 +64,12 @@ function HeaderAndFooterExample({ props }) {
                 </>
               ) : (
                 <>
-                  Please <a href="/login"> sign in</a> to view contact info
+                  Please{" "}
+                  <a class="pd" style={{ color: "black" }} href="/login">
+                    {" "}
+                    sign in
+                  </a>{" "}
+                  to view contact info
                 </>
               )}
             </div>
