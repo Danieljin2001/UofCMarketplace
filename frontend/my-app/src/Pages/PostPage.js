@@ -29,18 +29,23 @@ function PostPage() {
 
   const checkForEmptyFields = () => {
     if (form.title === "") {
+      canSubmit.current = false;
       setError("Post Title Cannot Be Empty");
-    }
-    if (form.description === "") {
+    } else if (form.description === "") {
+      canSubmit.current = false;
+
       setError("Post Description Cannot Be Empty");
-    }
-    if (form.adType === "") {
+    } else if (form.adType === "") {
+      canSubmit.current = false;
+
       setError("Post Ad Type Cannot Be Empty");
-    }
-    if (form.price === "") {
+    } else if (form.price === "") {
+      canSubmit.current = false;
+
       setError("Post Price Cannot Be Empty");
+    } else {
+      canSubmit.current = true;
     }
-    canSubmit.current = true;
   };
 
   async function handleSubmit(e) {
@@ -62,6 +67,8 @@ function PostPage() {
         setSuccess("Post Saved");
       }
     } else {
+      canSubmit.current = false;
+
       checkForEmptyFields();
     }
   }

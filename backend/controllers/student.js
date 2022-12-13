@@ -4,6 +4,24 @@ import jwt from "jsonwebtoken";
 import { getAdmin } from "./admin";
 const { ObjectId } = require("mongodb");
 
+export const getUser = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    console.log("getting friend w ", id);
+    const user = await Student.findById(id);
+    if (user) {
+      const { password, ...otherDetails } = user._doc;
+
+      res.status(200).json(otherDetails);
+    } else {
+      res.json({ error: "No such User" });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 export const changeStudentPassword = async (req, res) => {
   try {
     const stu = await getStudent(req, res);
@@ -60,6 +78,20 @@ export const getStudent = async (req, res) => {
       return stu;
     }
     return stu;
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getStudentObject = async (req, res) => {
+  try {
+    console.log("finding student w id=...", req.user.id);
+    var stu = await Student.findById(ObjectId(req.user.id));
+    console.log("student= ", stu);
+    if (!stu) {
+      res.json({ error: "No Student Found" });
+    }
+    res.status(200).json(stu);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
