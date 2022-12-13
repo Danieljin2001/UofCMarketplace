@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getAllAdminStudents } from "../api";
 import AdminStudents from "../components/AdminStudents";
 import NavBar from "../components/NavBar";
+import Header from "../components/AllStudentHeader";
+import AllStudentHeader from "../components/AllStudentHeader";
 
 function AllStudent() {
   const [students, setStudents] = useState(null);
@@ -16,8 +18,9 @@ function AllStudent() {
   return (
     <>
       <NavBar />
-      <div style={{ textAlign: "center" }}>All Students</div>
-      <div style={{ marginTop: "5%" }}>
+      <h1 style={{ textAlign: "center", fontSize:"5rem" }}>All Students</h1>
+      <AllStudentHeader/>
+      <div>
         {students?.map((student) => (
           <AdminStudents key={student._id} props={student} />
         ))}

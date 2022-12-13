@@ -16,7 +16,8 @@ function MyProductsPage() {
   return (
     <>
       <NavBar />
-      <div style={{ marginTop: "7%" }}>
+      <h1 className="text-center" style={{fontSize:"5rem", margin:"0"}}>My Posts</h1>
+      <div style={{ margin: "15px" }}>
         {posts?.map((post) => (
           <MyProducts key={post._id} props={post} />
         ))}

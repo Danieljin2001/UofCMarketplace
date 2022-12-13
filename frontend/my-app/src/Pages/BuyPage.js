@@ -39,7 +39,7 @@ function BuyPage() {
     <>
       <NavBar />
       <div id="background">
-        <div className="text-center">Buy</div>
+      <h1 className="text-center" style={{fontSize:"5rem", margin:"0"}}>Buy</h1>
         <PostProduct></PostProduct>
         <form
           style={{ width: "30%" }}

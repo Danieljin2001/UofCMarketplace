@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, useEffect } from "react";
 import NavBar from "./components/NavBar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -14,7 +14,12 @@ import Chat from "./Pages/Chat";
 import ProductPage from "./Pages/ProductPage";
 import MyProductsPage from "./Pages/MyProducts";
 import UpdatePassword from "./Pages/UpdatePassword";
-import { AuthenticatedRoute } from "./routeProtection";
+import {
+  AuthenticatedRoute,
+  getDecodedToken,
+  getToken,
+  isAuth,
+} from "./routeProtection";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminLogin from "./Pages/AdminLogin";
@@ -37,6 +42,8 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/buy" element={<BuyPage />} />
         <Route path="/sell" element={<SellPage />} />
+        <Route path="/productpage" element={<ProductPage />} />
+
         {/* </Route> */}
 
         {/* private routes, just checks if logged in */}
@@ -44,7 +51,6 @@ const App = () => {
           <Route path="/account" element={<Account />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/post" element={<PostPage />} />
-          <Route path="/productpage" element={<ProductPage />} />
           <Route path="/myproducts" element={<MyProductsPage />} />
           <Route path="/updatepass" element={<UpdatePassword />} />
           <Route path="/updatepost" element={<UpdatePost />} />
