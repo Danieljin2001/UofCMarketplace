@@ -15,23 +15,23 @@ function Product({ props }) {
   return (
     <>
       <div className="d-flex justify-content-center">
-        <div id = "container">
+        <div id = "container-product">
           <Link to="/productpage" state={{ props }} style={{ textDecoration: 'none'}}>
-            <div className="d- flex m-2" id = "inside-container">
-                <div className="d-flex justify-content-between align-items-center" id ="title-date">
+            <div className="m-2" id = "inside-container-product">
+                <div className="d-flex justify-content-between align-items-center" id ="title-date-product">
                   <div style={{background: "transparent"}}>
-                    <div id ="title">
+                    <div id ="title-product">
                       {props.title}
                     </div>
-                    <div id = "date">
+                    <div id = "date-product">
                       {formatDate(props.createdAt)} | {props.productType}
                     </div> 
                   </div>
-                  <div id="price">
+                  <div id="price-product">
                     ${props.price}
                   </div>
                 </div>
-                <div id = "desc">
+                <div id = "desc-product">
                   {props.desc}
                 </div>
             </div>

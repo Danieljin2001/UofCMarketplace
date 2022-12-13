@@ -1,6 +1,6 @@
 
 
-#container{
+#container-product{
     width: 80%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -8,40 +8,40 @@
     border-radius: 5px;
 }
 
-#container:hover {
+#container-product:hover {
     filter: brightness(85%)
 }
 
-#inside-container {
+#inside-container-product {
     height: 6rem;
     background: transparent;
 }
 
-#title-date {
+#title-date-product {
     background: transparent;
     font-size: 15px;
 }
 
-#title {
+#title-product {
     background: transparent;
     color: black;
     font-weight: bold;
     font-size: 20px;
 }
 
-#date {
+#date-product {
     background: transparent;
     color: black;
 }
 
-#price{
+#price-product{
     background: transparent;
     color: green;
     font-weight: bold;
     font-size: 20px;
 }
 
-#desc{
+#desc-product{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
