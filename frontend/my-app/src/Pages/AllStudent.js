@@ -18,11 +18,15 @@ function AllStudent() {
   return (
     <>
       <NavBar />
-      <h1 style={{ textAlign: "center", fontSize:"3rem" }}>All Students</h1>
+      <h1 style={{ textAlign: "center", fontSize: "3rem" }}>All Students</h1>
       <div>
-        {students?.map((student) => (
-          <AdminStudents key={student._id} props={student} />
-        ))}
+        {students?.length > 0 ? (
+          students.map((student) => (
+            <AdminStudents key={student._id} props={student} />
+          ))
+        ) : (
+          <h2 className="text-center">No Students Available</h2>
+        )}
       </div>
     </>
   );

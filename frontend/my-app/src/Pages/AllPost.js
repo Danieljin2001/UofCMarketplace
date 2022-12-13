@@ -16,11 +16,13 @@ function AllPost() {
   return (
     <>
       <NavBar />
-      <h1 style={{ textAlign: "center", fontSize:"3rem" }}>All Posts</h1>
+      <h1 style={{ textAlign: "center", fontSize: "3rem" }}>All Posts</h1>
       <div>
-        {posts?.map((post) => (
-          <AdminPosts key={post._id} props={post} />
-        ))}
+        {posts?.length > 0 ? (
+          posts.map((post) => <AdminPosts key={post._id} props={post} />)
+        ) : (
+          <h2 className="text-center">No Posts Available</h2>
+        )}
       </div>
     </>
   );
