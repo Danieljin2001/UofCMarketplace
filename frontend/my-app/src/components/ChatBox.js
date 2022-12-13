@@ -177,7 +177,7 @@ const ChatBox = ({
             class="col"
             style={{
               textAlign: "center",
-              height: "11%",
+              height: "13%",
               backgroundColor: "white",
             }}
           >
@@ -198,7 +198,7 @@ const ChatBox = ({
             className="container d-flex flex-column justify-content-space-between "
             style={{
               backgroundColor: "white",
-              height: "100%",
+              height: "81%",
               overflow: "auto",
               overflowX: "hidden",
             }}
