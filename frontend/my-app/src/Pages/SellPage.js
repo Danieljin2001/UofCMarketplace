@@ -14,7 +14,6 @@ function SellPage() {
   const [category, setCategory] = useState(categories[0]);
   async function getData() {
     const result = await getAllPosts();
-    console.log("result== ", result);
     setPosts(result.sell);
     allPosts.current = result.sell;
   }

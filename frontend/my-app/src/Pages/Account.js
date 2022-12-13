@@ -17,7 +17,7 @@ const Account = () => {
             className="my-2 py-3 "
             style={{
               borderBottom: "1px solid black",
-              width: "20%",
+              width: "17rem",
               color: "black",
             }}
           >
@@ -31,7 +31,7 @@ const Account = () => {
             className="my-2 py-3 "
             style={{
               borderBottom: "1px solid black",
-              width: "20%",
+              width: "17rem",
               color: "black",
             }}
           >
@@ -44,7 +44,7 @@ const Account = () => {
             href="/"
             className="my-2 py-3"
             variant="dark"
-            style={{ borderBottom: "1px solid black", width: "20%" }}
+            style={{ borderBottom: "1px solid black", width: "17rem" }}
           >
             Logout
           </Button>

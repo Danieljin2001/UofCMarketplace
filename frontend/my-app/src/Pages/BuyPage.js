@@ -14,7 +14,6 @@ function BuyPage() {
 
   async function getData() {
     const result = await getAllPosts();
-    console.log("result== ", result);
     setPosts(result.buy);
     allPosts.current = result.buy;
   }

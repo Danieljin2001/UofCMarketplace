@@ -5,7 +5,6 @@ import ProductDetails from "../components/ProductDetails";
 function ProductPage() {
   const location = useLocation();
   const { state } = location;
-  console.log("product details props= ", state);
   return (
     <div>
       <ProductDetails props={state.props}></ProductDetails>

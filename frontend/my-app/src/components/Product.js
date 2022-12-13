@@ -11,7 +11,6 @@ function Product({ props }) {
     date = date[0].replace(/\D/g,"/");
     return date;
   }
-  console.log("props= ", props);
   return (
     <>
       <div className="d-flex justify-content-center">

@@ -7,7 +7,6 @@ function MyProductsPage() {
   const [posts, setPosts] = useState(null);
   async function getData() {
     const result = await getStudentPosts();
-    console.log("result== ", result);
     setPosts(result);
   }
   useEffect(() => {

@@ -24,7 +24,6 @@ function PostPage() {
       ...form,
       [e.target.id]: e.target.value,
     });
-    console.log(form);
   };
 
   const checkForEmptyFields = () => {

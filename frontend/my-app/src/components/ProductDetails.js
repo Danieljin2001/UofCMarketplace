@@ -5,7 +5,6 @@ import { isAuth } from "../routeProtection";
 import NavBar from "./NavBar";
 
 function HeaderAndFooterExample({ props }) {
-  console.log("props in detail= ", props);
   const auth = isAuth();
   return (
     <>
