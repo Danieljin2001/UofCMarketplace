@@ -3,6 +3,20 @@ import Admin from "../models/admin";
 import jwt from "jsonwebtoken";
 const { ObjectId } = require("mongodb");
 
+export const getAdminObject = async (req, res) => {
+  try {
+    console.log("finding object w id=...", req.user.id);
+    var addy = await Admin.findById(ObjectId(req.user.id));
+    console.log("admin= ", addy);
+    if (!addy) {
+      return res.json({ error: "No Admin Found" });
+    }
+    res.status(200).json(addy);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const getAdmin = async (req, res) => {
   try {
     console.log("finding admin w id=...", req.user.id);

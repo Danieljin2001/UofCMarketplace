@@ -89,7 +89,7 @@ export const getStudentObject = async (req, res) => {
     var stu = await Student.findById(ObjectId(req.user.id));
     console.log("student= ", stu);
     if (!stu) {
-      res.json({ error: "No Student Found" });
+      return res.json({ error: "No Student Found" });
     }
     res.status(200).json(stu);
   } catch (error) {

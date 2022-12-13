@@ -41,6 +41,8 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/buy" element={<BuyPage />} />
         <Route path="/sell" element={<SellPage />} />
+        <Route path="/productpage" element={<ProductPage />} />
+
         {/* </Route> */}
 
         {/* private routes, just checks if logged in */}
@@ -48,7 +50,6 @@ const App = () => {
           <Route path="/account" element={<Account />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/post" element={<PostPage />} />
-          <Route path="/productpage" element={<ProductPage />} />
           <Route path="/myproducts" element={<MyProductsPage />} />
         </Route>
 

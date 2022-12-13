@@ -1,8 +1,14 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router";
 import NavBar from "../components/NavBar";
 
 const Account = () => {
+  const navigate = useNavigate();
+  const logoutUser = () => {
+    window.localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
       <NavBar />
@@ -41,7 +47,7 @@ const Account = () => {
         <div className=" text-center">
           {/* logout button */}
           <Button
-            href="/"
+            onClick={logoutUser}
             className="my-2 py-3"
             variant="dark"
             style={{ borderBottom: "1px solid black", width: "20%" }}

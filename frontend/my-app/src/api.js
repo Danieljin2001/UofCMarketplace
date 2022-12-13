@@ -91,6 +91,23 @@ export const getStudentChats = async (data) => {
   }
 };
 
+export const getAdmin = async (data) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(`${API}/api/admin/myself`, data, config);
+  const result = response.data;
+  if (result.error) {
+    return false;
+  } else {
+    return result;
+  }
+};
+
 export const getStudent = async (data) => {
   const config = {
     headers: {
