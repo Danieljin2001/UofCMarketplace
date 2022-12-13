@@ -2,6 +2,8 @@ import argon2 from "argon2";
 import Student from "../models/student";
 import jwt from "jsonwebtoken";
 import { getAdmin } from "./admin";
+import { deleteMyChats } from "./chat";
+import { deleteMyPosts } from "./post";
 const { ObjectId } = require("mongodb");
 
 export const getUser = async (req, res) => {
@@ -144,7 +146,9 @@ export const deleteStudent = async (req, res) => {
     const { stuID } = req.body;
     const myStudent = await Student.findById(ObjectId(stuID));
     if (!myStudent) return res.json({ error: "No Student Found" });
-
+    // get all student posts chats and msgs
+    await deleteMyChats(req, res);
+    await deleteMyPosts(req, res);
     await Student.deleteOne(ObjectId(stuID));
     res.status(200).json({ success: true });
   } catch (error) {

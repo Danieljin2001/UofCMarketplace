@@ -1,4 +1,5 @@
 import ChatModel from "../models/chat";
+import Message from "../models/msg";
 
 export const createChat = async (req, res) => {
   try {
@@ -37,5 +38,27 @@ export const findChat = async (req, res) => {
     res.status(200).json(chat);
   } catch (error) {
     res.status(500).json(error);
+  }
+};
+
+export const deleteMyChats = async (req, res) => {
+  try {
+    const chats = await ChatModel.find({
+      members: { $in: [req.body.stuID] },
+    });
+    if (chats) {
+      for (let i = 0; i < chats.length; i++) {
+        const chat = chats[i];
+        const { _id } = chat;
+        await Message.deleteMany({ chatId: _id });
+      }
+      // run this last, first delete all msgs
+      await ChatModel.deleteMany({
+        members: { $in: [req.body.stuID] },
+      });
+    }
+    return;
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };

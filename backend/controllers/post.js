@@ -210,3 +210,15 @@ export const getPost = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const deleteMyPosts = async (req, res) => {
+  try {
+    await Post.deleteMany({
+      ownerID: req.body.stuID,
+    });
+
+    return;
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
