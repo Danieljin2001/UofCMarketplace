@@ -39,10 +39,10 @@ function SignUp() {
       {error ? <ErrorAlert props={error} /> : null}
       {success ? <SuccessAlert props={success} /> : null}
       <div
-        className="container my-5 py-5 align-items-center"
-        style={{ height: "50vh", width: "450px", borderRadius: "20px" }}
+        className="container mt-5 pt-5 align-items-center"
+        style={{ height: "auto", width:"20rem" }}
       >
-        <form className="px-5">
+        <form className="">
           <h3 className="text-center">Sign Up</h3>
           <div className="form-group">
             <label for="email">Email address</label>
@@ -77,7 +77,7 @@ function SignUp() {
           <button
             onClick={handleSubmit}
             type="submit"
-            className="container btn btn-primary my-3 px-5"
+            className="container btn btn-primary mt-3"
           >
             Submit
           </button>
