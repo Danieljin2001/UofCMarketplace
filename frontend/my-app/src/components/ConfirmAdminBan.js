@@ -24,7 +24,7 @@ function ConfirmAdminBan({ props, setError, setSuccess }) {
 
   return (
     <>
-      <Button style={{ width: "7rem" }} variant="danger" onClick={handleShow}>
+      <Button style={{ width: "7rem", height:"2rem", fontSize:"0.82rem" }} variant="danger" onClick={handleShow}>
         Ban Student
       </Button>
 

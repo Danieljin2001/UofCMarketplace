@@ -46,8 +46,6 @@ function AdminStudents({ props }) {
                 setError={setError}
                 setSuccess={setSuccess}
               />
-            </div>
-            <div id="inputGroup" style={{}}>
               <ConfirmAdminBan
                 props={props}
                 setError={setError}

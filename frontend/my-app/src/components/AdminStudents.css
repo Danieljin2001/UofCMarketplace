@@ -11,9 +11,15 @@
 }
 
 #inputGroup {
+    display: flex;
+    justify-content: space-around;
     background-color: transparent;
-    height: 2rem;
+    height: 4rem;
     margin: auto;
+    flex-direction: column;
+    object-fit: contain;
+    font-size: 0.5rem;
+    gap: 4%;
 }
 
 @media only screen and (min-width:800px) {
@@ -34,9 +40,10 @@
 
     #inputGroup {
         display: flex;
-        width: 30%;
         justify-content: space-around;
         background-color: transparent;
-        height: 4rem;
+        height: 3rem;
+        margin: auto;
+        flex-direction: column;
     }
 }
