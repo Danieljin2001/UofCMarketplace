@@ -1,6 +1,6 @@
 # UofCMarketplace
 
-Our team proposed to create a full stack website where University of Calgary students post products they want to sell such as textbooks or clothing. Usually, students have to go through a hassle to meet random people across the city when they are trying to sell their textbooks. The objective for our project is to create a platform for UCalgary students so that they can easily and safely buy/sell items online. Our application provides a safe experience for UCalgary students to connect and exchange goods through creating posts on the application. Posts can only be created by UCalgary students after signing up for an account and every post consists of a description of a product or a description of what the student needs. These posts are all collectively posted on the main page where everyone can see the posts and the email of the creator so that they can get in contact with them if they are interested.
+This is a project for SENG513. The application we have created: U of C Marketplace is an app designed for students to buy items they need or sell items that they no longer need (such as textbooks and clothing). This application is designed specifically for students to sell or purchase items easily and securely at the university. As such, only students with a verified University of Calgary email are able to create posts to buy or sell items. When a student creates a post, it will include information about the item they wish to sell or buy, their contact information (email) and an option to send a message. Once the post is created, anyone can view these posts and contact the seller/buyer (through email or realtime chat) to arrange a time to meet.
 
 # Deployment Instructions
 
@@ -13,7 +13,7 @@ Github link: https://github.com/Danieljin2001/UofCMarketplace
 2. CD into /frontend/my-app from CMD
 3. npm i (installs required packages)
 4. npm start
-   1. the frontend should be running on
+   1. the frontend should be running on http://localhost:3000/
 5. CD into /backend from CMD
 6. npm i (installs required packages)
 7. npm run dev
