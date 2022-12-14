@@ -14,7 +14,6 @@ function ConfirmAccountDelete({ id, email, setError, setSuccess }) {
 
     const logoutUser = () => {
         window.localStorage.clear();
-        navigate("/");
     };
 
     async function handleDelete() {
@@ -33,7 +32,7 @@ function ConfirmAccountDelete({ id, email, setError, setSuccess }) {
 
     return (
         <>
-            <Button style={{borderBottom: "1px solid black", width: "20%", color: "black", }}
+            <Button style={{borderBottom: "1px solid black", width: "17rem", color: "black", }}
                     variant="danger"
                     className="my-2 py-3" onClick={handleShow}>
                 Delete Account
