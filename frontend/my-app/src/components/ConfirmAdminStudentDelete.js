@@ -24,7 +24,13 @@ function ConfirmAdminStudentDelete({ props, setError, setSuccess }) {
 
   return (
     <>
-      <Button style={{ width: "7rem", fontSize:"0.82rem", height:"2rem" }} variant="danger" onClick={handleShow}>Delete Student</Button>
+      <Button
+        style={{ width: "7rem", fontSize: "0.82rem", height: "2rem" }}
+        variant="danger"
+        onClick={handleShow}
+      >
+        Delete
+      </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
