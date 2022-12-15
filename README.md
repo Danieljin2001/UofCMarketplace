@@ -37,10 +37,7 @@ This is a project for SENG513. The application we have created: U of C Marketpla
 
 # Deployment Instructions
 
-Since our database is hosted in the cloud, it may be difficult to access our mongodb cluster since mongodb only allows access to specific ip addresses for security reasons. Either contact a group member for your ip address to be added or create your own free cluster on mongodb atlas. If going with the second option, the .env file should be updated with your mongodb cluster link. Lastly, if you would like to access mongodb Atlas to add your ip address yourself or view the database, then the following are the credentials:
-
-Email Address: jiho.kim@ucalgary.ca \
-Password: DA5mfBB0ucUY6pM
+Since our database is hosted in the cloud, it may be difficult to access our mongodb cluster since mongodb only allows access to specific ip addresses for security reasons. Either contact a group member for your ip address to be added or create your own free cluster on mongodb atlas. If going with the second option, the .env file should be updated with your mongodb cluster link.
 
 Github link: https://github.com/Danieljin2001/UofCMarketplace
 
