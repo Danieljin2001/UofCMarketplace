@@ -2,6 +2,15 @@
 
 This is a project for SENG513. The application we have created: U of C Marketplace is an full-stack fully responsive website designed for UCALGARY students to buy items they need or sell items that they no longer need (such as textbooks and clothing). This application is designed specifically for students to sell or purchase items easily and securely at the university. As such, only students with a verified University of Calgary email are able to create posts to buy or sell items. When a student creates a post, it will include information about the item they wish to sell or buy, their contact information (email or phone) and an option to chat through our built in messaging platform. Admin users are also supported which have the ability to ban students and delete users and posts. The website is built using the MERN stack with socket.io for realtime messaging and styled using react-bootstrap.
 
+![]('../../../screenshots/home.png')
+_Landing Page_
+
+![]('../../../screenshots/chat.png)
+_Realtime Chat_
+
+![](../screenshots/buy.png)
+_Buy Page_
+
 # Deployment Instructions
 
 Since our database is hosted in the cloud, it may be difficult to access our mongodb cluster since mongodb only allows access to specific ip addresses for security reasons. Either contact a group member for your ip address to be added or create your own free cluster on mongodb atlas. If going with the second option, the .env file should be updated with your mongodb cluster link.
