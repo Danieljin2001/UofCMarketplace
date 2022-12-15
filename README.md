@@ -2,14 +2,38 @@
 
 This is a project for SENG513. The application we have created: U of C Marketplace is an full-stack fully responsive website designed for UCALGARY students to buy items they need or sell items that they no longer need (such as textbooks and clothing). This application is designed specifically for students to sell or purchase items easily and securely at the university. As such, only students with a verified University of Calgary email are able to create posts to buy or sell items. When a student creates a post, it will include information about the item they wish to sell or buy, their contact information (email or phone) and an option to chat through our built in messaging platform. Admin users are also supported which have the ability to ban students and delete users and posts. The website is built using the MERN stack with socket.io for realtime messaging and styled using react-bootstrap.
 
-![]('../../../screenshots/home.png')
-_Landing Page_
+| ![home.png](./screenshots/home.png) |
+| :---------------------------------: |
+|            Landing Page             |
 
-![]('../../../screenshots/chat.png)
-_Realtime Chat_
+| ![chat.png](./screenshots/chat.png) |
+| :---------------------------------: |
+|            Realtime Chat            |
 
-![](../screenshots/buy.png)
-_Buy Page_
+| ![chat.png](./screenshots/buy.png) |
+| :--------------------------------: |
+|              Buy Page              |
+
+# Table of Contents
+
+- [UofCMarketplace](#uofcmarketplace)
+- [Table of Contents](#table-of-contents)
+- [Deployment Instructions](#deployment-instructions)
+- [Backend](#backend)
+- [Frontend](#frontend)
+- [Getting Started with Create React App](#getting-started-with-create-react-app)
+  - [Available Scripts](#available-scripts)
+    - [`npm start`](#npm-start)
+    - [`npm test`](#npm-test)
+    - [`npm run build`](#npm-run-build)
+    - [`npm run eject`](#npm-run-eject)
+  - [Learn More](#learn-more)
+    - [Code Splitting](#code-splitting)
+    - [Analyzing the Bundle Size](#analyzing-the-bundle-size)
+    - [Making a Progressive Web App](#making-a-progressive-web-app)
+    - [Advanced Configuration](#advanced-configuration)
+    - [Deployment](#deployment)
+    - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
 
 # Deployment Instructions
 
