@@ -1,6 +1,6 @@
 # UofCMarketplace
 
-This is a project for SENG513. The application we have created: U of C Marketplace is an app designed for students to buy items they need or sell items that they no longer need (such as textbooks and clothing). This application is designed specifically for students to sell or purchase items easily and securely at the university. As such, only students with a verified University of Calgary email are able to create posts to buy or sell items. When a student creates a post, it will include information about the item they wish to sell or buy, their contact information (email) and an option to send a message. Once the post is created, anyone can view these posts and contact the seller/buyer (through email or realtime chat) to arrange a time to meet.
+This is a project for SENG513. The application we have created: U of C Marketplace is an full-stack fully responsive website designed for UCALGARY students to buy items they need or sell items that they no longer need (such as textbooks and clothing). This application is designed specifically for students to sell or purchase items easily and securely at the university. As such, only students with a verified University of Calgary email are able to create posts to buy or sell items. When a student creates a post, it will include information about the item they wish to sell or buy, their contact information (email or phone) and an option to chat through our built in messaging platform. Admin users are also supported which have the ability to ban students and delete users and posts. The website is built using the MERN stack with socket.io for realtime messaging and styled using react-bootstrap.
 
 # Deployment Instructions
 
@@ -22,11 +22,11 @@ Github link: https://github.com/Danieljin2001/UofCMarketplace
 
 # Backend
 
-The backend is created using express.js to create a node.js server, nodemon for continuous development, jsonwebtokens for authentication, socket.io for realtime chat, and mongoose for interacting with our MongoDB Atlas Cluster.
+The backend is created using express.js to create a node.js server, nodemon for continuous development, jwt.io for authentication, socket.io for realtime chat, and mongoose for interacting with our MongoDB Atlas Cluster.
 
 # Frontend
 
-The frontend is created using create-react-app, react-router, axios for handling api calls, and bootstrap for styling.
+The frontend is created using create-react-app, react-router, axios for handling api calls, and styled using react-bootstrap.
 
 # Getting Started with Create React App
 
